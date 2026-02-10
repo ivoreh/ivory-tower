@@ -176,7 +176,9 @@ div.base {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	content: "Nude";
+	text-align: center;
+	white-space: pre;
+	content: "[Hover] \a Detailed nude / visible vulva";
 	top: -50%;
 	pointer-events: none;
 }
