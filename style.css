@@ -355,7 +355,7 @@ div.card {
 
 /* mobile support */
 @media(orientation:portrait) {
-	.showcase > img, .viewport, .nude {flex: 100%}
+	.showcase {grid-template-columns: 1fr}
 	#img0bg, div.base, #img0 {width: 100%; height: auto}
 	#img0bg {margin: auto 0} 
 	.tabl * {flex: 1 100%}
