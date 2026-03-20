@@ -178,7 +178,7 @@ div.base {
 	align-items: center;
 	text-align: center;
 	white-space: pre;
-	content: "[Hover] \a Detailed nude / visible vulva";
+	content: "[Hover]\a Detailed nude\a/\avisible vulva";
 	top: -50%;
 	pointer-events: none;
 }
@@ -207,10 +207,9 @@ img.pixelart {
 
 /* portfolio stuff */
 .showcase {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	display: grid;
 	gap: 0.5rem;
+	grid-template-columns: 1fr 1fr;
 }
 .showcase img {
 	outline: 0 double var(--accent);
@@ -234,7 +233,7 @@ img.pixelart {
 	width: 100%;
 }
 .showcase img, .viewport, .nude {
-	flex: 0 0 calc(50% - 0.25rem);
+	width: 100%;
 }
 #modal {
 	display: none;
