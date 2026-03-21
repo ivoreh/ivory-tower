@@ -200,9 +200,8 @@ div.base {
 	gap: 0.5em;
 	justify-content: space-around;
 }
-img.pixelart {
-	width: round(nearest, attr(width px), 64px) !important;
-	height: round(nearest, attr(height px), 64px) !important;
+#img0.pixelart {
+	height: round(down, 100%, attr(height px));
 }
 
 /* portfolio stuff */

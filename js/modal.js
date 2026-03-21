@@ -10,10 +10,12 @@ for (var i = 0; i < imgs.length; i++) {
 	c.onclick = function () {
 		img.src = c.src;
 		caption.innerHTML = c.alt;
+		img.height = c.naturalHeight;
+		img.width = c.naturalWidth;
 		modal.style.animation = "";
 		modal.style.display = "flex";
 		location.replace(location.href.split("#")[0] + "#" + c.id);
-		(c.closest(".showcase").classList.contains("pixelart")) || c.classList.contains("pixelart") ? img.className = "pixelart" : img.className = ""; 
+		(c.closest(".showcase").classList.contains("pixelart")) || c.classList.contains("pixelart") ? img.className = "pixelart" : img.className = "";
 	};
 	if ("#" + c.id == window.location.hash) {
 		c.click();
