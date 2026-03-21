@@ -120,7 +120,6 @@ button, p {
 h1, h2 {
 	font-family: "MuseoModerno";
 	mix-blend-mode: difference;
-	transition: 0;
 }
 a, .neon, .nude {
 	transition: 0.25s;
