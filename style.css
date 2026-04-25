@@ -32,8 +32,8 @@
 ::-webkit-scrollbar-thumb:hover {background: var(--pri)}
 ::selection {color: var(--pri); background: var(--accent)}
 body {
-	background: url("/ass/bg/arches.webp") top / cover fixed, url("/ass/bg/waw.webp") repeat center / 200% #420924;
-	background-blend-mode: difference, darken;
+	background: url("/ass/bg/arches.webp") top / cover fixed, url("/ass/bg/waw.webp") repeat center / 200%;
+	background-blend-mode: darken;
 	color: var(--pri);
 	font-family: Comfortaa, Verdana;
 	margin: 0;
