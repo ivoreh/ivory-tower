@@ -314,12 +314,6 @@ div.base {
 .tabl * {
 	flex: 1 30%;
 }
-.tabl b {
-	background: var(--ter);
-	display: block;
-	border: solid var(--pri);
-	border-width: 0.25em 0;
-}
 .tag {
 	display: inline-block;
 	background: var(--sec);
