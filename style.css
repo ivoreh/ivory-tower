@@ -174,11 +174,11 @@ div.base {
 	top: -50%;
 	pointer-events: none;
 }
-.nude:hover {
+.nude:hover, :not(#censor:checked) ~ .nude {
 	transition: 0s;
 	background: #0000;
 }
-.nude:hover img {
+.nude:hover img, :not(#censor:checked) ~ .nude img {
 	transition: 0s;
 	opacity: 1;
 }
