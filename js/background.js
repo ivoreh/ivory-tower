@@ -6,7 +6,7 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 9);
 var renderer = new THREE.WebGLRenderer();
 
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
 document.body.appendChild(renderer.domElement);
 renderer.domElement.style.cssText = "z-index:-1;position:fixed;top:0;width:100%";
 
@@ -32,13 +32,14 @@ gltfloader.load("/ass/muma/muma.glb", function (gltf) {
 
 		function render() {
         model.rotation.y = Date.now() / 32000;
-				scroll = lerp(lastScroll, getScroll(), 0.5 * clock.getDelta());
-				camera.rotation.x = 0 + (Math.PI / 32 * scroll);
+        let delta = clock.getDelta();
+				scroll = lerp(lastScroll, getScroll(), 0.5 * delta);
+				camera.rotation.x = -Math.PI / 16 * scroll;
 				camera.position.z = 2 - scroll * 1.4;
 				camera.position.y = 0.5 + scroll * 0.9;
-				lastScroll = scroll;
+        mixer.update(delta * 0.5);
         renderer.render(scene, camera);
-        mixer.update(clock.getDelta() * 15);
+        lastScroll = scroll;
         requestAnimationFrame(render);
     };
     render();
