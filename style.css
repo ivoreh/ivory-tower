@@ -8,20 +8,12 @@
 	--sec: #002b3ace;
 	--ter: #0c354262;
 }
-/* dark theme */
-/*:root {
-	--accent: #802;
-	--pri: #625;
-	--sec: #202;
-	--ter: #b692;
-}*/
-/*
-:root {
+/* :root {
 	--accent: #c44;
-	--pri: #646;  548
-	--sec: #002;
-	--ter: #8791; ecf2
-}*/
+	--pri: #577;
+	--sec: #355;
+	--ter: #4664;
+} */
 * {
 	scrollbar-color: var(--accent) #0000;
 	scroll-behavior: smooth;
