@@ -142,49 +142,49 @@ div.base {
 	writing-mode: vertical-rl;
 	padding: 0.5rem 0;
 	border-radius: 1rem;
-}
-.neon:hover {
-	text-shadow: 0 0 10px;
-	box-shadow: 0 0 20px;
-	transition: 0s;
-}
-.neon:active {
-	text-shadow: 0 0 9px;
-	box-shadow: 0 0 16px;
+	&:hover {
+		text-shadow: 0 0 10px;
+		box-shadow: 0 0 20px;
+		transition: 0s;
+	}
+	&:active {
+		text-shadow: 0 0 9px;
+		box-shadow: 0 0 16px;
+	}
 }
 .smol, .content {
 	width: clamp(35ch, 95%, 70ch);
 }
 .nude {
 	background: var(--sec);
-}
-.nude img {
-	opacity: 0;
-	height: 100%;
-	width: 100%;
-}
-.nude::after {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	white-space: pre;
-	content: "[Hover]\a Detailed nude\a/\avisible vulva";
-	top: -50%;
-	pointer-events: none;
-}
-.nude:hover, :not(#censor:checked) ~ .nude {
-	transition: 0s;
-	background: #0000;
-}
-.nude:hover img, :not(#censor:checked) ~ .nude img {
-	transition: 0s;
-	opacity: 1;
-}
-.nude:hover::after {
-	transition: 0s;
-	opacity: 0;
+	img {
+		opacity: 0;
+		height: 100%;
+		width: 100%;
+	}
+	&::after {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		white-space: pre;
+		content: "[Hover]\a Detailed nude\a/\avisible vulva";
+		top: -50%;
+		pointer-events: none;
+	}
+	&:hover, :not(#censor:checked) ~ .nude {
+		transition: 0s;
+		background: #0000;
+		img, :not(#censor:checked) ~ .nude img {
+			transition: 0s;
+			opacity: 1;
+		}
+		&::after {
+			transition: 0s;
+			opacity: 0;
+		}
+	}
 }
 .flex {
 	display: flex;
@@ -201,27 +201,27 @@ div.base {
 	display: grid;
 	gap: 0.5rem;
 	grid-template-columns: 1fr 1fr;
-}
-.showcase img {
-	outline: 0 double var(--accent);
-	transition: .15s, opacity .5s;
-	object-fit: cover;
-	box-sizing: border-box;
-}
-.showcase img:focus, .showcase img:hover {
-	outline: 0.5rem solid var(--accent);
-	cursor: pointer;
-	transition: 0s;
-}
-.showcase img:active {
-	outline-offset: 0.5rem;
+	img {
+		outline: 0 double var(--accent);
+		transition: .15s, opacity .5s;
+		object-fit: cover;
+		box-sizing: border-box;
+	}
+	img:focus, img:hover {
+		outline: 0.5rem solid var(--accent);
+		cursor: pointer;
+		transition: 0s;
+	}
+	img:active {
+		outline-offset: 0.5rem;
+	}
 }
 .viewport {
 	height: auto;
 	display: block;
-}
-.viewport canvas {
-	width: 100%;
+	canvas {
+		width: 100%;
+	}
 }
 .showcase img, .viewport, .nude {
 	width: 100%;
@@ -286,15 +286,15 @@ div.base {
 	box-sizing: border-box;
 	transition: 0.1s;
 	background: var(--sec);
-}
-.color:focus, .color:hover {
-	border-width: 0.25em 0;
-}
-.color:active {
-	border-width: 0.5em 0;
-}
-.color:focus-visible {
-	outline: 0;
+	&:focus, &:hover {
+		border-width: 0.25em 0;
+	}
+	&:active {
+		border-width: 0.5em 0;
+	}
+	&:focus-visible {
+		outline: 0;
+	}
 }
 .tabl {
 	background: var(--ter);
@@ -315,13 +315,13 @@ div.base {
 	border-radius: 0.5em 0.5em 0 0;
 	margin-left: 50%;
 	transform: translateX(-50%);
-}
-.tag img {
-	height: 16px;
-	width: auto;
-}
-.tag img:active {
-	outline-offset: 0;
+	img {
+		height: 16px;
+		width: auto;
+	}
+	img:active {
+		outline-offset: 0;
+	}
 }
 
 /* blog stuff */
@@ -330,12 +330,14 @@ div.card {
 	padding: 0.5rem;
 	margin: 1em 0 0;
 }
-.card p {
-	margin: 0.5em 0;
-}
-.card img {
-	width: 8em;
-	height: auto;
+.card {
+	p {
+		margin: 0.5em 0;
+	}
+	img {
+		width: 8em;
+		height: auto;
+	}
 }
 
 /* mobile support */
