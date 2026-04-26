@@ -7,6 +7,9 @@
 	--pri: #35b091;
 	--sec: #002b3ace;
 	--ter: #0c354262;
+	scrollbar-color: var(--accent) #0000;
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
 }
 /* :root {
 	--accent: #c44;
@@ -14,11 +17,6 @@
 	--sec: #355;
 	--ter: #4664;
 } */
-* {
-	scrollbar-color: var(--accent) #0000;
-	scroll-behavior: smooth;
-	scrollbar-width: thin;
-}
 ::-webkit-scrollbar, ::-webkit-scrollbar-track {background: #0000}
 ::-webkit-scrollbar-thumb {background: var(--ter)}
 ::-webkit-scrollbar-thumb:hover {background: var(--pri)}
