@@ -11,91 +11,89 @@
 	<link href=../fav.webp rel=icon>
 </head>
 <body>
-	<div class=base>
-		<div class=content>
-			<small><a href=.>Blog</a> > art-breakdown, 31st Dec 2024</small>
-			<h1>Silly's art style breakdown</h1>
-			<h2>History and inspiration</h2>
-			<p>
-				<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3357778413"><big>Link to the gmod addon!!</big></a>
-				<br><br>
-				&emsp;On the 9th of December 2023 I found <a href=https://sketchfab.com/3d-models/pizza-tower-low-poly-366dd3149c3f484bb633a2533c939a48>this pizza tower model pack</a> and studied it for a while. I think the way VibaPop used textures and uv unwrapping to do flat colors is cool and in april 2024 I made <a href=../portfolio.html#copper>copper</a> in a similar style (toon shaded and without outlines though).
-				<br><br>
-				&emsp;A limitation of models that are textured is that at high resolutions you can see the pixels of the textures. Take the first quake as an example: playing it on a 1080p monitor makes it obvious that you're in a primitive environment with few faces and limited depth. Playing it at 1/4 the resolution makes things look much better shaded and deep since you can't tell wether a pixel is dark because the quad it's on isn't facing a light or if it's because that's just what the texture looks like. This goes for devil daggers too, where I was genuinely unsure if certain details were part of the models or textures (and only found out after inspecting them in blender).
-				<br><br>
-				&emsp;An alternative is using vertex colors or combining both textures and vertex colors but I don't like the way the colors are interpolated between vertices and how that makes the tris obvious. Admittedly, using palettes as textures has its limitations too but they're limitations I can work with which is why I like this style. It's like 3d vector art just without bezier curves since it can be scaled to any resolution and looks good without having to make textures larger for big monitors.
-				<br><br>
-				&emsp;I had seen other model packs using the same technique but I think this pizza tower one left the biggest impact on me. The idea of having most details modelled instead of textured was and still is very appealing to me. It's also interesting how they shaded things- look at pillar john. You can use the model inspector in sketchfab to study its textures and wireframes. During the summer I found a <a href=https://youtu.be/yhGjCzxJV3E>GDC talk about guilty gear's art</a> which showed some interesting tricks and also mentions rendering at high resolutions.
-				<br><br>
-				&emsp;Point is, between copper and silly I had been thinking of making a model with a color palette for a texture but using bilinear filtering instead of nearest neighbour to make gradients. Silly was my first proper attempt at this, as I had tried it before but only in passing.
-			</p>
-			<div class=smol>
-				<div class=center>
-					<img src=ass/silly/shading.webp width=16 height=16 style=width:16em class=pixelart>
-					<img src=ass/silly/shading.webp width=16 height=16 style=width:16em>
-				</div>
-				<p>
-					First is the base palette. Second is what it looks like when using bilinear filtering. I've upscaled it 4 times so that each color is 4x4 pixels. The outer pixels are blended with pixels from the surrounding colors and the inner 2x2 pixels remain flat colors. (I wanted to upscale it only 3 times and only later realized this lmofa)
-				</p>
+	<main>
+		<small><a href=.>Blog</a> > art-breakdown, 31st Dec 2024</small>
+		<h1>Silly's art style breakdown</h1>
+		<h2>History and inspiration</h2>
+		<p>
+			<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3357778413"><big>Link to the gmod addon!!</big></a>
+			<br><br>
+			&emsp;On the 9th of December 2023 I found <a href=https://sketchfab.com/3d-models/pizza-tower-low-poly-366dd3149c3f484bb633a2533c939a48>this pizza tower model pack</a> and studied it for a while. I think the way VibaPop used textures and uv unwrapping to do flat colors is cool and in april 2024 I made <a href=../portfolio.html#copper>copper</a> in a similar style (toon shaded and without outlines though).
+			<br><br>
+			&emsp;A limitation of models that are textured is that at high resolutions you can see the pixels of the textures. Take the first quake as an example: playing it on a 1080p monitor makes it obvious that you're in a primitive environment with few faces and limited depth. Playing it at 1/4 the resolution makes things look much better shaded and deep since you can't tell wether a pixel is dark because the quad it's on isn't facing a light or if it's because that's just what the texture looks like. This goes for devil daggers too, where I was genuinely unsure if certain details were part of the models or textures (and only found out after inspecting them in blender).
+			<br><br>
+			&emsp;An alternative is using vertex colors or combining both textures and vertex colors but I don't like the way the colors are interpolated between vertices and how that makes the tris obvious. Admittedly, using palettes as textures has its limitations too but they're limitations I can work with which is why I like this style. It's like 3d vector art just without bezier curves since it can be scaled to any resolution and looks good without having to make textures larger for big monitors.
+			<br><br>
+			&emsp;I had seen other model packs using the same technique but I think this pizza tower one left the biggest impact on me. The idea of having most details modelled instead of textured was and still is very appealing to me. It's also interesting how they shaded things- look at pillar john. You can use the model inspector in sketchfab to study its textures and wireframes. During the summer I found a <a href=https://youtu.be/yhGjCzxJV3E>GDC talk about guilty gear's art</a> which showed some interesting tricks and also mentions rendering at high resolutions.
+			<br><br>
+			&emsp;Point is, between copper and silly I had been thinking of making a model with a color palette for a texture but using bilinear filtering instead of nearest neighbour to make gradients. Silly was my first proper attempt at this, as I had tried it before but only in passing.
+		</p>
+		<div class=smol>
+			<div class=center>
+				<img src=ass/silly/shading.webp width=16 height=16 style=width:16em class=pixelart>
+				<img src=ass/silly/shading.webp width=16 height=16 style=width:16em>
 			</div>
-			<hr>
-			<h2>UV mapping</h2>
 			<p>
-				&emsp;I made heavy use of "Project from View" for large parts of the model where I wanted gradients, such as the shirt (which is visible on the bottom row of the palette). Stretching an UV island makes the gradient sharper, while shrinking widens it. For certain parts I didn't cross over the islands from one color to the next to obtain lighter/darker colors from 2 blended colors.
-				<br><br>
-				&emsp;For most of the model I only used 2 colors: one for the skin and another for details like ambient occlusion or extremities. Having simpler gradients like this sprinkled throughout helps with depth perception since I made the model with no shading in mind.
-			</p>
-			<div class="center smol">
-				<img src=ass/silly/uv.webp width=512 height=512 style=width:16em>
-				<img src=ass/silly/profile.webp>
-				<p>note the sleeves, shirt, fingers, face, hair, neck and knees</p>
-			</div>
-			<hr>
-			<h2>Random details</h2>
-			<p>
-				<img src=ass/silly/eye.webp style=display:inline;width:8em;float:right>
-				&emsp;I did something silly with the pupil :3 instead of modelling it too I made the sclera a cone that goes behind the character's face. The pupil is actually part of the face and not the eye. This does make animating the face harder I bet but I didn't plan on animating it soo
-				<br><br>
-				&emsp;Most of the model is symmetrical which I don't think looks that bad but the hair could've looked better if it was asymmetrical.
-				<br><br>
-				&emsp;Whenever I added details like highlights which hover above quads and are infinitely thin planes I tried weight painting said quads so that they don't deform enough for the highlights to be obscured by them when moving.
-				<br><br>
-				&emsp;Though I practiced making model sheets a month before, I cheesed the character's design and made her as I went. I had a few ideas that were floating around for a while.
-				<br><br>
-				&emsp;I wrote this while listening to the <a href=https://youtu.be/nkm0G-NTV4w>OST of mirror's edge</a>.
-			</p>
-			<hr>
-			<h2>Source pain</h2>
-			<p>
-				If you want to make models for goldsrc/source (with blender) get the blender source tools extension for importing and exporting from valve's formats, crowbar for compiling and ffmpeg for goldsrc .bmp textures or vtfedit for source .vtf files. Use notepad or notepad++ for .qc files
-				<br><br>
-				&emsp;I initially made her as a sven coop model (this is also why the palette looks the way it looks: I used ffmpeg to convert it to an 8 bit .bmp: <code>ffmpeg -i palette.png -pix_fmt bgr8 -y -sws_flags neighbor -sws_dither none palette.bmp</code>) but decided to port her to gmod too (no I haven't uploaded the sven variant anywhere (yet)). Porting to sven coop took a day I think... gmod took several. It took me a while to understand how to structure my folders for gmod to see my materials (and the model viewer still doesn't see em) and the ragdoll took an entire day. Crowbar too for how much it simplifies the process was a little annoying because the option to compile the model to a given folder makes it automatically put the files in a models/ folder inside it.
-				<br><br>
-				&emsp;Anyway, back to the folder structure and ragdoll! Gmod expects addons to be in a folder which contains (in the case of models like mine) /lua, /materials and /models folders. In /materials and /models you also need a folder named after your addon (/silly) and only THEN can you put your .mdl .vmt .vtf files inside. I also made a project-files/ folder to be a little more organized. You also need an addon.json in the root folder containing your addon's name, tags and stuff. Overall very convoluted.
-				<br><br>
-				&emsp;Now onto the ragdoll. Something I didn't know and that caused me issues is that the model compiler will automatically create convex meshes using the vertex weights on your ragdoll which means beside making the ragdoll out of separate meshes you also need to weight paint them accordingly (with hard weights which are either 0 or 1).
-				<br><br>
-				&emsp;I don't even know what I did with the .qc files cuz I wrote one by hand for the general details like what the surface of the model is made out of or for the jiggle bones but I scoured for a lot of extra files that define bones n stuff. I think most were from the gmod wiki though.
-				<br><br>
-				&emsp;Though the model was made to not be shaded I couldn't find a good way of leaving it unshaded in source so as a failsafe I used sharps in blender so it isn't fully smooth nor fully flat. This makes it look much better in case it does get shaded by i.e a flashlight (idk how lights are categorized in source but the flashlight specifically does this).
-				&emsp;Also made hands for the viewmodel. These went pretty well (though I still have some issues to fix with the weight painting). Mostly modelled after the default hands to keep the proportions (and cuz I'm still bad at 3d hands) but with some funky fingers n stuff.
-			</p>
-			<div class="center smol">
-				<img src=ass/silly/sharps.webp>
-				<img src=ass/silly/smooth.webp>
-			</div>
-			<div class="center smol">
-				<img src=ass/silly/sven.webp class=center style=width:32em>
-				<p>silly in a they hunger map in sven</p>
-			</div>
-			<hr>
-			<h2>Final thoughts</h2>
-			<p>
-				So recap: I made an upscaled palette as a texture; used bilinear filtering for gradients; ported the model to sven then gmod which was a long process
-				<br><br>
-				Making simple models with flat colors that are unshaded can work (look at <a href=https://goose.game>untitled goose game</a> (though it has shadows which look gewd)) but depth perception becomes an issue. Gradients can make things clearer n more readable while still being a simple style without any lighting.
+				First is the base palette. Second is what it looks like when using bilinear filtering. I've upscaled it 4 times so that each color is 4x4 pixels. The outer pixels are blended with pixels from the surrounding colors and the inner 2x2 pixels remain flat colors. (I wanted to upscale it only 3 times and only later realized this lmofa)
 			</p>
 		</div>
-	</div>
+		<hr>
+		<h2>UV mapping</h2>
+		<p>
+			&emsp;I made heavy use of "Project from View" for large parts of the model where I wanted gradients, such as the shirt (which is visible on the bottom row of the palette). Stretching an UV island makes the gradient sharper, while shrinking widens it. For certain parts I didn't cross over the islands from one color to the next to obtain lighter/darker colors from 2 blended colors.
+			<br><br>
+			&emsp;For most of the model I only used 2 colors: one for the skin and another for details like ambient occlusion or extremities. Having simpler gradients like this sprinkled throughout helps with depth perception since I made the model with no shading in mind.
+		</p>
+		<div class="center smol">
+			<img src=ass/silly/uv.webp width=512 height=512 style=width:16em>
+			<img src=ass/silly/profile.webp>
+			<p>note the sleeves, shirt, fingers, face, hair, neck and knees</p>
+		</div>
+		<hr>
+		<h2>Random details</h2>
+		<p>
+			<img src=ass/silly/eye.webp style=display:inline;width:8em;float:right>
+			&emsp;I did something silly with the pupil :3 instead of modelling it too I made the sclera a cone that goes behind the character's face. The pupil is actually part of the face and not the eye. This does make animating the face harder I bet but I didn't plan on animating it soo
+			<br><br>
+			&emsp;Most of the model is symmetrical which I don't think looks that bad but the hair could've looked better if it was asymmetrical.
+			<br><br>
+			&emsp;Whenever I added details like highlights which hover above quads and are infinitely thin planes I tried weight painting said quads so that they don't deform enough for the highlights to be obscured by them when moving.
+			<br><br>
+			&emsp;Though I practiced making model sheets a month before, I cheesed the character's design and made her as I went. I had a few ideas that were floating around for a while.
+			<br><br>
+			&emsp;I wrote this while listening to the <a href=https://youtu.be/nkm0G-NTV4w>OST of mirror's edge</a>.
+		</p>
+		<hr>
+		<h2>Source pain</h2>
+		<p>
+			If you want to make models for goldsrc/source (with blender) get the blender source tools extension for importing and exporting from valve's formats, crowbar for compiling and ffmpeg for goldsrc .bmp textures or vtfedit for source .vtf files. Use notepad or notepad++ for .qc files
+			<br><br>
+			&emsp;I initially made her as a sven coop model (this is also why the palette looks the way it looks: I used ffmpeg to convert it to an 8 bit .bmp: <code>ffmpeg -i palette.png -pix_fmt bgr8 -y -sws_flags neighbor -sws_dither none palette.bmp</code>) but decided to port her to gmod too (no I haven't uploaded the sven variant anywhere (yet)). Porting to sven coop took a day I think... gmod took several. It took me a while to understand how to structure my folders for gmod to see my materials (and the model viewer still doesn't see em) and the ragdoll took an entire day. Crowbar too for how much it simplifies the process was a little annoying because the option to compile the model to a given folder makes it automatically put the files in a models/ folder inside it.
+			<br><br>
+			&emsp;Anyway, back to the folder structure and ragdoll! Gmod expects addons to be in a folder which contains (in the case of models like mine) /lua, /materials and /models folders. In /materials and /models you also need a folder named after your addon (/silly) and only THEN can you put your .mdl .vmt .vtf files inside. I also made a project-files/ folder to be a little more organized. You also need an addon.json in the root folder containing your addon's name, tags and stuff. Overall very convoluted.
+			<br><br>
+			&emsp;Now onto the ragdoll. Something I didn't know and that caused me issues is that the model compiler will automatically create convex meshes using the vertex weights on your ragdoll which means beside making the ragdoll out of separate meshes you also need to weight paint them accordingly (with hard weights which are either 0 or 1).
+			<br><br>
+			&emsp;I don't even know what I did with the .qc files cuz I wrote one by hand for the general details like what the surface of the model is made out of or for the jiggle bones but I scoured for a lot of extra files that define bones n stuff. I think most were from the gmod wiki though.
+			<br><br>
+			&emsp;Though the model was made to not be shaded I couldn't find a good way of leaving it unshaded in source so as a failsafe I used sharps in blender so it isn't fully smooth nor fully flat. This makes it look much better in case it does get shaded by i.e a flashlight (idk how lights are categorized in source but the flashlight specifically does this).
+			&emsp;Also made hands for the viewmodel. These went pretty well (though I still have some issues to fix with the weight painting). Mostly modelled after the default hands to keep the proportions (and cuz I'm still bad at 3d hands) but with some funky fingers n stuff.
+		</p>
+		<div class="center smol">
+			<img src=ass/silly/sharps.webp>
+			<img src=ass/silly/smooth.webp>
+		</div>
+		<div class="center smol">
+			<img src=ass/silly/sven.webp class=center style=width:32em>
+			<p>silly in a they hunger map in sven</p>
+		</div>
+		<hr>
+		<h2>Final thoughts</h2>
+		<p>
+			So recap: I made an upscaled palette as a texture; used bilinear filtering for gradients; ported the model to sven then gmod which was a long process
+			<br><br>
+			Making simple models with flat colors that are unshaded can work (look at <a href=https://goose.game>untitled goose game</a> (though it has shadows which look gewd)) but depth perception becomes an issue. Gradients can make things clearer n more readable while still being a simple style without any lighting.
+		</p>
+	</main>
 </body>
 </html>

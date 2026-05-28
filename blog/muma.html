@@ -11,60 +11,58 @@
 	<link href=../fav.webp rel=icon>
 </head>
 <body>
-	<div class=base>
-		<div class=content>
-			<small><a href=.>Blog</a> > muma, 8-9th June 2025</small>
-			<h1>Muma design process</h1>
-			<p>
+	<main>
+		<small><a href=.>Blog</a> > muma, 8-9th June 2025</small>
+		<h1>Muma design process</h1>
+		<p>
                 In April I started work on a new model (as you do). I had a rough idea of what elements I wanted to include in it (like a forest-y natur-y char) but not a proper character / model sheet. Early into modellin I wanted to try making a geo nodes setup for adding tris to the hair and I ended up applying it to the entire character.
-			</p>
-            <h1>Technical stuff first:</h1>
-            <h2>Geo nodes</h2>
-            <p>
+		</p>
+ 		<h1>Technical stuff first:</h1>
+ 		<h2>Geo nodes</h2>
+  		<p>
                 So her design features a lot of leaves right? Instead of hand placing them I used geo nodes<br>
                 It's simple: I spawn a buncha points on the model's surface and turn them into tris (or other polygons) that are angled downwards based on the normals of the surface. I also use a vertex group to select areas that don't have hair like the arms. To ignore the sharps I used the smooth by angle node (set to 180 degrees) to basically turn the model back to shade smooth with no sharps
-            </p>
-            <div class=center>
-                <img src=ass/muma/sharp-leaf-sampling.webp width=256 height=256>
-                <img src=ass/muma/smooth-leaf-sampling.webp width=256 height=256>
-                <img src=ass/muma/geo-nodes.webp width=372 height=233>
-            </div>
-            <h2>Normals</h2>
-            <p>
+		</p>
+		<div class=center>
+			<img src=ass/muma/sharp-leaf-sampling.webp width=256 height=256>
+			<img src=ass/muma/smooth-leaf-sampling.webp width=256 height=256>
+			<img src=ass/muma/geo-nodes.webp width=372 height=233>
+		</div>
+		<h2>Normals</h2>
+		<p>
                 I modified the normals of each hair / leaf by first duping the model (with alt + D so the dupes are linked), then using the DataTransfer modifier to copy normals (and weights) over from the base mesh. The problem with this was that the arms were very close to the body and that lead to tris getting mapped to the wrong bones but I solved it by separating the model into the torso arms and legs. The UVs just kind of worked from the start so that's nice :3
-            </p>
-            <div>
-                <img src=ass/muma/torso.webp width=256 height=256 class=center>
-            </div>
-            <h2>Palette</h2>
-            <p>
+		</p>
+		<div>
+			<img src=ass/muma/torso.webp width=256 height=256 class=center>
+		</div>
+		<h2>Palette</h2>
+		<p>
                 The UVs are just like last time but I made the palette's size a power of 2 (8x8) so I stretched the colors on the margins a bit. Also used pure black which may or may not have been a bad idea
-            </p>
-            <img src=ass/muma/palette.webp width=8 height=8 class="center pixelart">
-            <h1>Now onto the fartsy stuff</h1>
-            <h2>Her design</h2>
-            <p>
+		</p>
+		<img src=ass/muma/palette.webp width=8 height=8 class="center pixelart">
+		<h1>Now onto the fartsy stuff</h1>
+		<h2>Her design</h2>
+		<p>
                 Honestly not sure what inspired me but I'd say a combination of the terraria dryad (and the witch doctor cuz I had a jungle phase when I was new to the game), adventure time's huntress wizard and san from princess mononoke (and maybe the rain world scavenger tolls with their bigass skulls in the background). I still haven't noted down anything but the idea was this sorta forest spirit that was a plant.
-                <br><br>
+		<br><br>
                 Things just kinda came to me while working like the hair being red since leaves turn red during Autumn or how ivy turns red.<br>
                 I applied what I had learned last time with the gradients by making the arms a slightly lighter green near the extremities and the legs a darker red which helps with depth perception but the legs also double down as looking like roots / boots.<br>
                 Instead of trying to make a low poly face again I just made the eyes and it ended up looking like a mask.<br>
                 The hole in her chest is also an idea that I had just a couple days before starting work when I was randomly sketching something else.<br>
                 I used hooves, antlers and bent legs to make things a little more interesting by borrowing features from deers.<br>
                 The flowers in her hair came from me expanding upon the idea of her photosynthesizing.
-            </p>
-            <div class="center pixelart">
-                <img src=ass/muma/antlers.webp width=512 height=512>
-                <img src=ass/muma/legs.webp width=512 height=512>
-                <img src=ass/muma/hair.webp width=512 height=512>
-                <img src=ass/muma/cough.webp width=512 height=512>
-            </div>
-            <p>
-                I think it's the most interesting character design I've made up until now. My other characters could be summed up to "naked woman". I think when it comes to character design you have to show off <em>someone</em>. Here you can sort of infer certain things like a vague backstory and personality and the naked part makes sense considering it's a forest spirit which might not wear clothes like humans.
-                <br><br>
-                This sort of goes for most of the things I make but I feel there's a lack of representation when it comes to naked figures outside of literal porn. Not to mention how genitals are often obfuscated or entirely erased; so I colored one (1) tri slightly darker to imply their existence
-            </p>
+		</p>
+		<div class="center pixelart">
+			<img src=ass/muma/antlers.webp width=512 height=512>
+			<img src=ass/muma/legs.webp width=512 height=512>
+			<img src=ass/muma/hair.webp width=512 height=512>
+			<img src=ass/muma/cough.webp width=512 height=512>
 		</div>
-	</div>
+		<p>
+                I think it's the most interesting character design I've made up until now. My other characters could be summed up to "naked woman". I think when it comes to character design you have to show off <em>someone</em>. Here you can sort of infer certain things like a vague backstory and personality and the naked part makes sense considering it's a forest spirit which might not wear clothes like humans.
+		<br><br>
+                This sort of goes for most of the things I make but I feel there's a lack of representation when it comes to naked figures outside of literal porn. Not to mention how genitals are often obfuscated or entirely erased; so I colored one (1) tri slightly darker to imply their existence
+		</p>
+	</main>
 </body>
 </html>

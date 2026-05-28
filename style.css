@@ -29,6 +29,13 @@ body {
 	margin: 0;
 	animation: show 0.5s ease-out;
 }
+main {
+	width: clamp(35ch, 95%, 70ch);
+	margin: 0 auto;
+	padding: 2rem 0;
+	overflow: hidden;
+
+}
 h1 {
 	background: var(--sec);
 	color: var(--pri);
@@ -100,7 +107,7 @@ p, .tabl, .tabl b, h1, h2 {
 button, p {
 	background: var(--ter);
 }
-.center, .img0, .modal, .smol, .content {
+.center, .img0, .modal, .smol {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -123,12 +130,6 @@ a, .neon, .nude {
 }
 
 /* general classes */
-.base {
-	margin: 0 auto;
-	width: 75%;
-	padding: 2rem 0;
-	overflow: hidden;
-}
 .bordr {
 	border: 0.5em solid var(--sec);
 }
@@ -157,7 +158,7 @@ a, .neon, .nude {
 		box-shadow: 0 0 16px;
 	}
 }
-.smol, .content {
+.smol {
 	width: clamp(35ch, 95%, 70ch);
 }
 .nude {

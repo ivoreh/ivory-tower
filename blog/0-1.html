@@ -11,34 +11,32 @@
 	<link href=../fav.webp rel=icon>
 </head>
 <body>
-	<div class=base>
-		<div class=content>
-			<small><a href=.>Blog</a> > 0-1</small>
-			<h1>The 0-1 range</h1>
-			<p>&emsp;So... math, right? I think 0 and 1 are some pretty cool numbers.</p>
-			<h2>Multiplication!</h2>
-			<p>&emsp;For me, most of the use of the [0, 1] range comes from multiplying numbers within it. 0 and 1 are already great since you can either leave a value alone or completely nullify it, but multiplying with stuff like 0.382? That's when things get interesting-er.<br><br>&emsp;In the context of shaders, you can make masks this way- the color of a given pixel is represented by 3 channels: R, G and B. Each is a value between 0 and 1. Say you multiply a random image with a completely gray one. Gray is (0.5, 0.5, 0.5), which means you halve each color channel's value and effectively darken all pixels in the original image.<br>&emsp;This is actually a "blend mode" in photo editing software literally called "multiply", by the way! There's many blend modes, some being more complex, but this is one that either changes nothing or darkens the image.</p>
-			<h2>Percentages!</h2>
-			<p>Spoiler: this is still about multiplication.<br>&emsp;Percentages are great too- want to calculate how far along a progress bar should be drawn? Just take the amount of things currently loaded and divide it by the total amount. Though we multiply them with 100 so they look nice, the actual values we use when working with percentages are still from 0 to 1 (aka 0% to 100%).</p>
-			<h2>In programming!</h2>
-			<p>&emsp;I sometimes use nothing but numbers for certain things instead of if statements. If statements can be slow, and are a binary "execute or don't execute" compared to numbers which, when used wisely, can lead to more complex behaviour. Think of how xp orbs float towards you in minecraft. They <i>could</i> just start floating once you're x blocks away at maximum speed... OR start floating but with their speed multiplied by a value that gets higher the closee you are. I'm guessing that value is (max distance - distance) / max distance, e.g
-			the player has to be 4 blocks away max and their current distance is 2, so (4 - 2) / 4 = 0.5</p>
-			<p>
-				<input type=range max=1 step=.01 style=float:left>
-				<code id=res>0.50 • 0.50 = 0.250</code>
-				<input type=range max=1 step=.01 style=float:right>
-			</p>
-			<script>
-				var res = document.querySelector("#res");
-				var inputs = document.querySelectorAll("input");
-				function f(x){return parseFloat(x).toFixed(2)}
-				function sum() {
-					res.innerText = f(inputs[0].value)+" • "+f(inputs[1].value)+" = "+(inputs[0].value*inputs[1].value).toFixed(3);
-				}
-				inputs[0].oninput = function(){sum()};
-				inputs[1].oninput = function(){sum()};
-			</script>
-		</div>
-	</div>
+	<main>
+		<small><a href=.>Blog</a> > 0-1</small>
+		<h1>The 0-1 range</h1>
+		<p>&emsp;So... math, right? I think 0 and 1 are some pretty cool numbers.</p>
+		<h2>Multiplication!</h2>
+		<p>&emsp;For me, most of the use of the [0, 1] range comes from multiplying numbers within it. 0 and 1 are already great since you can either leave a value alone or completely nullify it, but multiplying with stuff like 0.382? That's when things get interesting-er.<br><br>&emsp;In the context of shaders, you can make masks this way- the color of a given pixel is represented by 3 channels: R, G and B. Each is a value between 0 and 1. Say you multiply a random image with a completely gray one. Gray is (0.5, 0.5, 0.5), which means you halve each color channel's value and effectively darken all pixels in the original image.<br>&emsp;This is actually a "blend mode" in photo editing software literally called "multiply", by the way! There's many blend modes, some being more complex, but this is one that either changes nothing or darkens the image.</p>
+		<h2>Percentages!</h2>
+		<p>Spoiler: this is still about multiplication.<br>&emsp;Percentages are great too- want to calculate how far along a progress bar should be drawn? Just take the amount of things currently loaded and divide it by the total amount. Though we multiply them with 100 so they look nice, the actual values we use when working with percentages are still from 0 to 1 (aka 0% to 100%).</p>
+		<h2>In programming!</h2>
+		<p>&emsp;I sometimes use nothing but numbers for certain things instead of if statements. If statements can be slow, and are a binary "execute or don't execute" compared to numbers which, when used wisely, can lead to more complex behaviour. Think of how xp orbs float towards you in minecraft. They <i>could</i> just start floating once you're x blocks away at maximum speed... OR start floating but with their speed multiplied by a value that gets higher the closee you are. I'm guessing that value is (max distance - distance) / max distance, e.g
+		the player has to be 4 blocks away max and their current distance is 2, so (4 - 2) / 4 = 0.5</p>
+		<p>
+			<input type=range max=1 step=.01 style=float:left>
+			<code id=res>0.50 • 0.50 = 0.250</code>
+			<input type=range max=1 step=.01 style=float:right>
+		</p>
+		<script>
+			var res = document.querySelector("#res");
+			var inputs = document.querySelectorAll("input");
+			function f(x){return parseFloat(x).toFixed(2)}
+			function sum() {
+				res.innerText = f(inputs[0].value)+" • "+f(inputs[1].value)+" = "+(inputs[0].value*inputs[1].value).toFixed(3);
+			}
+			inputs[0].oninput = function(){sum()};
+			inputs[1].oninput = function(){sum()};
+		</script>
+	</main>
 </body>
 </html>
