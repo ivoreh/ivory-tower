@@ -33,8 +33,6 @@ main {
 	width: clamp(35ch, 95%, 70ch);
 	margin: 0 auto;
 	padding: 2rem 0;
-	overflow: hidden;
-
 }
 h1 {
 	background: var(--sec);
