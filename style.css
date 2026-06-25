@@ -211,14 +211,10 @@ a, .neon, .nude {
 		outline-offset: 0.5rem;
 	}
 }
-.viewport {
-	height: auto;
-	display: block;
-	canvas {
-		width: 100%;
-	}
+.viewport canvas {	
+	width: 100%;
 }
-.showcase img, .viewport, .nude {
+.showcase img, .nude {
 	width: 100%;
 }
 #modal {
