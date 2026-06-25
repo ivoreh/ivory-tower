@@ -92,7 +92,7 @@ a:focus-visible {
 	image-rendering: pixelated;
 }
 #img0bg, .card h2, .palette, .showcase, .showcase canvas, .nude, .tabl, h1, hr, img, code, p {
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 	corner-shape: bevel;
 }
 p, .tabl, .tabl b, h1, h2 {
@@ -101,9 +101,8 @@ p, .tabl, .tabl b, h1, h2 {
 #caption, .center, .color, .tag, h1, h2, .tabl * {
 	text-align: center;
 }
-.center, .img0, .modal, .smol {
-	margin-left: auto;
-	margin-right: auto;
+.center, .modal, .smol {
+	margin: 0 auto;
 }
 #close, .color {
 	cursor: pointer;
@@ -234,7 +233,8 @@ a, .neon, .nude {
 	position: fixed;
 	top: 0;
 	background: #011e;
-	overflow: scroll;
+	mix-blend-mode: difference;
+	overflow: auto;
 	animation: show 0.5s;
 }
 #img0bg {
