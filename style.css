@@ -19,15 +19,16 @@
 } */
 ::selection {color: var(--pri); background: var(--accent)}
 body {
-	background: url("/ass/bg/arches.webp") top / cover fixed, url("/ass/bg/waw.webp") repeat center / 200% #000;
-	background-blend-mode: darken, normal;
+	/*background: url("/ass/bg/arches.webp") top / cover fixed, url("/ass/bg/waw.webp") repeat center / 200% #000;
+	background-blend-mode: darken, normal; */
+	background: #000;
 	color: var(--pri);
 	font-family: Comfortaa, Verdana;
 	margin: 0;
 	animation: show 0.5s ease-out;
 }
 main {
-	width: clamp(35ch, 95%, 70ch);
+	width: clamp(35ch, 95%, 50vmax);
 	margin: 0 auto;
 	padding: 2rem 0;
 }
@@ -44,13 +45,13 @@ hr {
 	border: solid var(--ter);
 	padding: 2px;
 	border-width: 3px 8px;
-	/* margin: 2px;
+	margin: 2px;
 	border: 0;
 	height: 128px;
 	width: 512px;
 	display: block;
 	align-content: center;
-	background: url("hr.webp"); */
+	background: url("hr.webp");
 }
 p {
 	text-align: justify;
@@ -98,9 +99,6 @@ p, .tabl, .tabl b, h1, h2 {
 }
 #caption, .center, .color, .tag, h1, h2, .tabl * {
 	text-align: center;
-}
-button, p {
-	background: var(--ter);
 }
 .center, .img0, .modal, .smol {
 	margin-left: auto;
