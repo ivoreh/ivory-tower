@@ -87,7 +87,7 @@ a:focus-visible {
 .pixelart, canvas, hr {
 	image-rendering: pixelated;
 }
-#img0bg, .card h2, .palette, .showcase, .showcase canvas, .nude, .tabl, h1, hr, img, code, p {
+#img0bg, .card h2, .palette, .showcase, .showcase canvas, .nude, .tabl, h1, img, code, p {
 	border-radius: 1rem;
 	corner-shape: bevel;
 }
