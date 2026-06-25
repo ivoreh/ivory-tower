@@ -97,7 +97,7 @@ p, .tabl, .tabl b, h1, h2 {
 #caption, .center, .color, .tag, h1, h2, .tabl * {
 	text-align: center;
 }
-.center, .modal, .smol {
+.center, .modal, .smol, hr {
 	margin: 0 auto;
 }
 #close, .color {
@@ -110,7 +110,7 @@ p, .tabl, .tabl b, h1, h2 {
 	outline: var(--accent) solid 0.25rem;
 	transition: 0s;
 }
-h1, h2 {
+h1, h2, hr {
 	font-family: "MuseoModerno";
 	mix-blend-mode: difference;
 }
