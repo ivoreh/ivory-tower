@@ -93,6 +93,7 @@ a:focus-visible {
 }
 #img0bg, .card h2, .palette, .showcase, .showcase canvas, .nude, .tabl, h1, hr, img, code, p {
 	border-radius: 0.5rem;
+	corner-shape: bevel;
 }
 p, .tabl, .tabl b, h1, h2 {
 	padding: 0.5rem;
