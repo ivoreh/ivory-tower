@@ -42,10 +42,6 @@ h2 {
 	margin: 1rem 0;
 }
 hr {
-	border: solid var(--ter);
-	padding: 2px;
-	border-width: 3px 8px;
-	margin: 2px;
 	border: 0;
 	height: 128px;
 	width: 512px;
@@ -88,7 +84,7 @@ a:focus-visible {
 }
 
 /* elements and classes with the same rules (grouping them together saves up space MOST of the time) */
-.pixelart, canvas {
+.pixelart, canvas, hr {
 	image-rendering: pixelated;
 }
 #img0bg, .card h2, .palette, .showcase, .showcase canvas, .nude, .tabl, h1, hr, img, code, p {
