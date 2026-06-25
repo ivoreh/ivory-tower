@@ -296,16 +296,6 @@ a, .neon, .nude {
 		outline: 0;
 	}
 }
-.tabl {
-	background: var(--ter);
-	display: flex;
-	justify-content: space-evenly;
-	align-content: space-between;
-	flex-wrap: wrap;
-}
-.tabl * {
-	flex: 1 30%;
-}
 .tag {
 	display: inline-block;
 	background: var(--sec);
@@ -341,7 +331,6 @@ a, .neon, .nude {
 /* mobile support */
 @media(orientation:portrait) {
 	.showcase {grid-template-columns: 1fr}
-	#img0bg, div.base, #img0 {width: 100%; height: auto}
+	main, #img0bg, #img0 {width: 100%; height: auto}
 	#img0bg {margin: auto 0} 
-	.tabl * {flex: 1 100%}
 }
