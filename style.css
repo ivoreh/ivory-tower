@@ -63,6 +63,9 @@ a {
 	outline: #0000 double;
 }
 a:focus-visible, a:hover {
+	color: var(--pri);
+	background: var(--accent);
+	transition: 0s;
 	text-decoration-style: solid;
 }
 pre {
@@ -224,7 +227,7 @@ a, .neon, .nude {
 	width: 100%;
 	position: fixed;
 	top: 0;
-	background: #011e;
+	background: #000f;
 	mix-blend-mode: difference;
 	overflow: auto;
 	animation: show 0.5s;
@@ -241,14 +244,8 @@ a, .neon, .nude {
 }
 #caption {
 	font-size: 1.5em;
-	color: var(--accent);
 	margin: 0;
-	text-shadow: var(--pri) 0 3px;
-	border-radius: 0 0 0.5em 0.5em;
 	animation: show 1s ease-in;
-}
-#caption a {
-	text-shadow: var(--pri) 0 3px;
 }
 @keyframes zoom {
 	0% {transform: scale(0.6)}

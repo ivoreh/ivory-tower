@@ -41,13 +41,13 @@ window.addEventListener('hashchange', evt => {
 
 modal.onclick = evt => {
 	if (!evt.target.closest("#img0bg")) {
-		h();
+		hide();
 	}
 };
 
 window.addEventListener("keydown", evt => {
 	if (evt.key == "Escape") {
-		h();
+		hide();
 	}
 });
 
@@ -57,7 +57,7 @@ modal.addEventListener("animationend", evt => {
 	}
 });
 
-function h() { // Hide
+function hide() {
 	modal.style.animation = "hide .2s forwards";
 	history.replaceState({}, {}, location.href.split("#")[0]);
 }
