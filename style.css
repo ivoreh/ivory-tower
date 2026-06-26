@@ -25,7 +25,7 @@ body {
 	color: var(--pri);
 	font-family: Comfortaa, Verdana;
 	margin: 0;
-	animation: show 0.5s ease-out;
+	animation: show .5s ease-out;
 }
 main {
 	width: clamp(35ch, 95%, 50vmax);
@@ -52,6 +52,7 @@ hr {
 p {
 	text-align: justify;
 	padding: 0.25rem;
+	margin: 1em 0;
 }
 img {
 	width: clamp(1em, 16em, 100%);
@@ -90,21 +91,19 @@ a:focus-visible {
 .pixelart, canvas, hr {
 	image-rendering: pixelated;
 }
-#img0bg, .card h2, .palette, .showcase, .showcase canvas, .nude, .tabl, h1, img, code, p {
-	border-radius: 1rem;
+#img0bg, .palette, .showcase, .showcase canvas, .nude, h1, img, code {
+	border-radius: .5rem;
 	corner-shape: bevel;
 }
-p, .tabl, .tabl b, h1, h2 {
+p, h1, h2 {
 	padding: 0.5rem;
 }
-#caption, .center, .color, .tag, h1, h2, .tabl * {
+#caption, .center, .color, .tag, h1, h2 {
 	text-align: center;
 }
 .center, .modal, .smol, hr {
-	margin: 0 auto;
-}
-#close, .color {
-	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
 }
 #img0 {
 	user-select: none;
@@ -117,14 +116,11 @@ h1, h2, hr {
 	font-family: "MuseoModerno";
 	mix-blend-mode: difference;
 }
-a, .neon, .nude {
-	transition: 0.25s;
+a, .neon, .nude, img {
+	transition: .25s;
 }
 
 /* general classes */
-.bordr {
-	border: 0.5em solid var(--sec);
-}
 .center {
 	display: block;
 }
@@ -161,6 +157,7 @@ a, .neon, .nude {
 		width: 100%;
 	}
 	&::after {
+		transition: .5s;
 		position: relative;
 		display: flex;
 		justify-content: center;
@@ -189,9 +186,6 @@ a, .neon, .nude {
 	flex-wrap: wrap;
 	gap: 0.5em;
 	justify-content: space-around;
-}
-#img0.pixelart {
-	height: round(down, 100%, attr(height px));
 }
 
 /* portfolio stuff */
@@ -242,6 +236,9 @@ a, .neon, .nude {
 	border-radius: 0;
 	display: block;
 }
+#img0.pixelart {
+	height: round(down, 100%, attr(height px));
+}
 #caption {
 	font-size: 1.5em;
 	margin: 0;
@@ -275,6 +272,7 @@ a, .neon, .nude {
 	box-sizing: border-box;
 	transition: 0.1s;
 	background: var(--sec);
+	cursor: pointer;
 	&:focus, &:hover {
 		border-width: 0.25em 0;
 	}
@@ -286,20 +284,18 @@ a, .neon, .nude {
 	}
 }
 .tag {
-	display: inline-block;
-	background: var(--sec);
-	color: var(--pri);
-	font-size: 1.25em;
-	padding: 0.25em 0.25em 0;
-	border-radius: 0.5em 0.5em 0 0;
-	margin-left: 50%;
-	transform: translateX(-50%);
 	img {
-		height: 16px;
-		width: auto;
-	}
-	img:active {
-		outline-offset: 0;
+		display: block;
+		height: 1em;
+		width: 100%;
+		outline: 0 double var(--accent);
+		&:hover {
+			transition: 0s;
+			outline: 0.5rem solid var(--accent);
+		}
+		&:active {
+			outline-offset: 0.5rem;
+		}
 	}
 }
 
