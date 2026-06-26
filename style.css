@@ -306,20 +306,6 @@ a, .neon, .nude {
 	}
 }
 
-/* blog stuff */
-.card {
-	background: var(--ter);
-	padding: 0.5rem;
-	margin: 1em 0 0;
-	p {
-		margin: 0.5em 0;
-	}
-	img {
-		width: 8em;
-		height: auto;
-	}
-}
-
 /* mobile support */
 @media(orientation:portrait) {
 	.showcase {grid-template-columns: 1fr}
