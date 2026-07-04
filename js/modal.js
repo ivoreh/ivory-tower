@@ -1,28 +1,29 @@
 let modal = document.getElementById("modal");
-let img = document.getElementById("img0");
+let img0 = document.getElementById("img0");
 let caption = document.getElementById("caption");
 let imgs = document.querySelectorAll(".showcase img");
 
 for (var i = 0; i < imgs.length; i++) {
-	let c = imgs[i];
-	c.tabIndex = "0";
-	c.id = c.alt.split(",")[0].replace(/ |, /g, "-");
-	c.onclick = function () {
-		img.src = c.src;
-		caption.innerHTML = c.alt;
-		img.height = c.naturalHeight;
-		img.width = c.naturalWidth;
+	let img = imgs[i];
+	img.tabIndex = "0";
+	img.id = img.parentNode.lastElementChild.textContent.split(",")[0].replace(/ |, /g, "-");
+	img.onclick = function () {
+		img0.src = img.src;
+		caption.innerHTML = img.parentNode.lastElementChild.textContent;
+		console.log(img.parentNode.lastElementChild.innerHTML);
+		img0.height = img.naturalHeight;
+		img0.width = img.naturalWidth;
 		modal.style.animation = "";
 		modal.style.display = "flex";
-		location.replace(location.href.split("#")[0] + "#" + c.id);
-		(c.closest(".showcase").classList.contains("pixelart")) || c.classList.contains("pixelart") ? img.className = "pixelart" : img.className = "";
+		location.replace("#" + img.id);
+		img.closest(".showcase").classList.contains("pixelart") || img.classList.contains("pixelart") ? img0.className = "pixelart" : img0.className = "";
 	};
-	if ("#" + c.id == window.location.hash) {
-		c.click();
+	if ("#" + img.id == window.location.hash) {
+		img.click();
 	}
-	c.addEventListener("keydown", k => {
+	img.addEventListener("keydown", k => {
 		if (k.key == "Enter") {
-			c.click();
+			img.click();
 		}
 	});
 }

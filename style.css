@@ -86,6 +86,9 @@ code {
 a:focus-visible {
 	outline-offset: 0.25rem;
 }
+figure {
+	margin: 0;
+}
 
 /* elements and classes with the same rules (grouping them together saves up space MOST of the time) */
 .pixelart, canvas, hr {
