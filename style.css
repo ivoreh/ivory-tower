@@ -28,7 +28,7 @@ body {
 	animation: show .5s ease-out;
 }
 main {
-	width: clamp(35ch, 95%, 50vmax);
+	width: 50vmax;
 	margin: 0 auto;
 	padding: 2rem 0;
 }
@@ -46,12 +46,10 @@ hr {
 	height: 128px;
 	width: 512px;
 	display: block;
-	align-content: center;
 	background: url("hr.webp");
 }
 p {
 	text-align: justify;
-	padding: 0.25rem;
 	margin: 1em 0;
 }
 img {
@@ -164,8 +162,6 @@ a, .neon, .nude, img {
 		position: relative;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-		text-align: center;
 		white-space: pre;
 		content: "[Hover]\a Detailed nude\a/\avisible vulva";
 		top: -50%;
