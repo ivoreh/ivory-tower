@@ -10,7 +10,6 @@ for (var i = 0; i < imgs.length; i++) {
 	img.onclick = function () {
 		img0.src = img.src;
 		caption.innerHTML = img.parentNode.lastElementChild.textContent;
-		console.log(img.parentNode.lastElementChild.innerHTML);
 		img0.height = img.naturalHeight;
 		img0.width = img.naturalWidth;
 		modal.style.animation = "";
