@@ -1,6 +1,5 @@
 let modal = document.getElementById("modal");
 let img0 = document.getElementById("img0");
-let caption = document.getElementById("caption");
 let imgs = document.querySelectorAll(".showcase img");
 
 for (var i = 0; i < imgs.length; i++) {
@@ -9,9 +8,8 @@ for (var i = 0; i < imgs.length; i++) {
 	img.id = i;
 	img.onclick = function () {
 		img0.src = img.src;
-		caption.innerHTML = img.parentNode.lastElementChild.textContent;
-		img0.height = img.naturalHeight;
-		img0.width = img.naturalWidth;
+		img0.height = img.height;
+		img0.width = img.width;
 		modal.style.animation = "";
 		modal.style.display = "flex";
 		location.replace("#" + img.id);
