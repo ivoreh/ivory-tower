@@ -167,10 +167,10 @@ a, .neon, .nude, img {
 		top: -50%;
 		pointer-events: none;
 	}
-	&:hover, :not(#censor:checked) ~ .nude {
+	&:hover, #censor:checked + .showcase & {
 		transition: 0s;
 		background: #0000;
-		img, :not(#censor:checked) ~ .nude img {
+		img {
 			transition: 0s;
 			opacity: 1;
 		}
