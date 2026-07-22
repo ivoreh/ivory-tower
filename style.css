@@ -30,13 +30,13 @@ body {
 main {
 	width: 50vmax;
 	margin: 0 auto;
-	padding: 2rem 0;
+	padding: 1rem 0;
 }
 h1 {
 	background: var(--sec);
 	color: var(--pri);
-	font-size: 2em;
-	margin: 1.5rem 0;
+	font-size: 1.5em;
+	margin: 1rem 0;
 }
 h2 {
 	margin: 1rem 0;
@@ -68,7 +68,7 @@ a:focus-visible, a:hover {
 	text-decoration-style: solid;
 }
 pre {
-	font: 1.5em monospace;
+	font: 1.5vmax monospace;
 	margin: 1rem 0;
 }
 input[type=range] {
@@ -296,5 +296,6 @@ a, .neon, .nude, img {
 @media(orientation:portrait) {
 	.showcase {grid-template-columns: 1fr}
 	main, #img0bg, #img0 {width: 100%; height: auto}
-	#img0bg {margin: auto 0} 
+	#img0bg {margin: auto 0}
+	pre {font-size: 3vmin}
 }
