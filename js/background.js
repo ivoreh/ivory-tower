@@ -18,7 +18,7 @@ function getScroll() {
 	return window.scrollY / (document.body.scrollHeight - window.innerHeight);
 }
 
-gltfloader.load("/ass/muma/muma.glb", function (gltf) {
+gltfloader.load("/ass/muma.glb", function (gltf) {
     let model = gltf.scene;
 
     const mixer = new THREE.AnimationMixer(model);
