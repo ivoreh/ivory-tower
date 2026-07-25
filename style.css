@@ -19,7 +19,7 @@ body {
 	color: var(--pri);
 	font-family: Comfortaa, Verdana, sans-serif;
 	margin: 0;
-	animation: show .5s ease-out;
+	animation: show .2s ease-out;
 }
 main {
 	width: 50vmax;
@@ -47,7 +47,7 @@ p {
 	margin: 1em 0;
 }
 img {
-	width: clamp(1em, 16em, 100%);
+	min-width: 8em;
 	height: auto;
 }
 a {
@@ -86,7 +86,7 @@ figure {
 .pixelart, canvas, hr {
 	image-rendering: pixelated;
 }
-#img0bg, .palette, .showcase, .showcase canvas, .nude, h1, img, code {
+#img0bg, .palette, .showcase, .nude, h1, img, code {
 	border-radius: .5rem;
 	corner-shape: bevel;
 }
@@ -202,9 +202,6 @@ a, .neon, .nude, img {
 		outline-offset: 0.5rem;
 	}
 }
-.viewport canvas {	
-	width: 100%;
-}
 .showcase img, .nude {
 	width: 100%;
 }
@@ -216,7 +213,6 @@ a, .neon, .nude, img {
 	position: fixed;
 	top: 0;
 	background: #000d;
-	overflow: auto;
 	animation: show 0.5s;
 }
 #img0bg {
