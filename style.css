@@ -65,7 +65,7 @@ pre {
 	font: 1.5vmax monospace;
 	margin: 1rem 0;
 }
-input[type=range] {
+input {
 	accent-color: var(--accent);
 	cursor: pointer;
 }
