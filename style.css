@@ -81,17 +81,20 @@ a:focus-visible {
 figure {
 	margin: 0;
 }
+figcaption {
+	margin: 0.5em 0 0;
+}
 
 /* elements and classes with the same rules (grouping them together saves up space MOST of the time) */
 .pixelart, canvas, hr {
 	image-rendering: pixelated;
 }
-#img0bg, .palette, .showcase, .nude, h1, img, code {
+.palette, .nude, h1, img, code {
 	border-radius: .5rem;
 	corner-shape: bevel;
 }
 p, h1, h2 {
-	padding: 0.5rem;
+	padding: 0.5rem 0;
 }
 .center, .color, .tag, h1, h2 {
 	text-align: center;
@@ -148,17 +151,14 @@ a, .neon, .nude, img {
 	background: var(--sec);
 	img {
 		opacity: 0;
-		height: 100%;
-		width: 100%;
 	}
-	&::after {
+	&::before {
 		transition: .5s;
-		position: relative;
-		display: flex;
-		justify-content: center;
+		position: absolute;
+		display: block;
 		white-space: pre;
-		content: "[Hover]\a Detailed nude\a/\avisible vulva";
-		top: -50%;
+		font-family: monospace;
+		content: " !!!!! \a[Hover]\a\a detailed nude / \avisible vulva";
 		pointer-events: none;
 	}
 	&:hover, #censor:checked + .showcase & {
@@ -168,7 +168,7 @@ a, .neon, .nude, img {
 			transition: 0s;
 			opacity: 1;
 		}
-		&::after {
+		&::before {
 			transition: 0s;
 			opacity: 0;
 		}
@@ -187,11 +187,12 @@ a, .neon, .nude, img {
 	display: grid;
 	gap: 0.5rem;
 	grid-template-columns: 1fr 1fr;
+	margin: 1em 0;
 	img {
 		outline: 0 double var(--accent);
 		transition: .15s, opacity .5s;
 		object-fit: cover;
-		box-sizing: border-box;
+		width: 100%;
 	}
 	img:focus, img:hover {
 		outline: 0.5rem solid var(--accent);
@@ -202,28 +203,22 @@ a, .neon, .nude, img {
 		outline-offset: 0.5rem;
 	}
 }
-.showcase img, .nude {
-	width: 100%;
-}
 #modal {
 	display: none;
 	z-index: 1;
 	height: 100%;
 	width: 100%;
 	position: fixed;
-	top: 0;
 	background: #000d;
 	animation: show 0.5s;
 }
 #img0bg {
-	height: 100%;
 	animation: zoom 0.5s;
 }
 #img0 {
 	height: 100%;
 	width: auto;
 	border-radius: 0;
-	display: block;
 }
 #img0.pixelart {
 	height: round(down, 100%, attr(height px));
