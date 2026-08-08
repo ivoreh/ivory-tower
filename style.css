@@ -1,6 +1,3 @@
-/* custom fonts */
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa&family=MuseoModerno&family=Source+Code+Pro&display=swap");
-
 /* general styling */
 :root {
 	--accent: #c24;
@@ -17,7 +14,7 @@ body {
 	background-blend-mode: darken, normal; */
 	background: #000;
 	color: var(--pri);
-	font-family: Comfortaa, Verdana, sans-serif;
+	font-family: Tahoma, sans-serif;
 	margin: 0;
 	animation: show .2s ease-out;
 }
@@ -69,12 +66,6 @@ input {
 	accent-color: var(--accent);
 	cursor: pointer;
 }
-code {
-	font-family: monospace;
-	padding: 0 6px;
-	color: var(--pri);
-	background: var(--sec);
-}
 a:focus-visible {
 	outline-offset: 0.25rem;
 }
@@ -89,7 +80,7 @@ figcaption {
 .pixelart, canvas, hr {
 	image-rendering: pixelated;
 }
-.palette, .nude, h1, img, code {
+.palette, .nude, h1, img {
 	border-radius: .5rem;
 	corner-shape: bevel;
 }
@@ -111,7 +102,7 @@ p, h1, h2 {
 	transition: 0s;
 }
 h1, h2, hr {
-	font-family: "MuseoModerno";
+	font-family: Garamond, serif;
 	mix-blend-mode: difference;
 }
 a, .neon, .nude, img {
