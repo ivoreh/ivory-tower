@@ -90,7 +90,7 @@ p, h1, h2 {
 .center, .color, .tag, h1, h2 {
 	text-align: center;
 }
-.center, .modal, .smol, hr {
+.center, .smol, hr, #img0 {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -203,10 +203,8 @@ a, .neon, .nude, img {
 	background: #000d;
 	animation: show 0.5s;
 }
-#img0bg {
-	animation: zoom 0.5s;
-}
 #img0 {
+	animation: zoom 0.5s;
 	height: 100%;
 	width: auto;
 	border-radius: 0;
@@ -272,7 +270,7 @@ a, .neon, .nude, img {
 /* mobile support */
 @media(orientation:portrait) {
 	.showcase {grid-template-columns: 1fr}
-	main, #img0bg, #img0 {width: 100%; height: auto}
-	#img0bg {margin: auto 0}
+	main, #img0 {width: 100%; height: auto}
+	#img0 {margin: auto 0}
 	pre {font-size: 3vmin}
 }
