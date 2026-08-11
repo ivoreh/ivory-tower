@@ -230,7 +230,6 @@ a, .neon, .nude, img {
 	display: flex;
 	overflow: hidden;
 	flex-wrap: wrap;
-	max-width: 32em;
 }
 .color {
 	width: 4em;
@@ -241,29 +240,25 @@ a, .neon, .nude, img {
 	transition: 0.1s;
 	background: var(--sec);
 	cursor: pointer;
+	outline: 0;
 	&:focus, &:hover {
 		border-width: 0.25em 0;
 	}
 	&:active {
 		border-width: 0.5em 0;
 	}
-	&:focus-visible {
-		outline: 0;
-	}
 }
-.tag {
-	img {
-		display: block;
-		height: 1em;
-		width: 100%;
-		outline: 0 double var(--accent);
-		&:hover {
-			transition: 0s;
-			outline: 0.5rem solid var(--accent);
-		}
-		&:active {
-			outline-offset: 0.5rem;
-		}
+.tag img {
+	display: block;
+	height: 1em;
+	width: 100%;
+	outline: 0 double var(--accent);
+	&:hover {
+		transition: 0s;
+		outline: 0.5rem solid var(--accent);
+	}
+	&:active {
+		outline-offset: 0.5rem;
 	}
 }
 
