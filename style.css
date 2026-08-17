@@ -92,9 +92,6 @@ p, h1, h2 {
 	margin-left: auto;
 	margin-right: auto;
 }
-#img0 {
-	user-select: none;
-}
 .nude:focus-visible, a:focus-visible {
 	outline: var(--accent) solid 0.25rem;
 	transition: 0s;
@@ -114,8 +111,6 @@ a, .neon, .nude, img {
 .neon {
 	color: var(--pri);
 	font-size: 2em;
-	text-shadow: var(--pri) 0 0 6px;
-	box-shadow: var(--pri) 0 0 8px;
 	background: var(--sec);
 	border: var(--pri) 0.15rem solid;
 	text-decoration: none;
@@ -124,13 +119,7 @@ a, .neon, .nude, img {
 	padding: 0.5rem 0;
 	border-radius: 1rem;
 	&:hover {
-		text-shadow: 0 0 10px;
-		box-shadow: 0 0 20px;
 		transition: 0s;
-	}
-	&:active {
-		text-shadow: 0 0 9px;
-		box-shadow: 0 0 16px;
 	}
 }
 .smol {
@@ -206,6 +195,7 @@ a, .neon, .nude, img {
 	height: 100%;
 	width: auto;
 	border-radius: 0;
+	user-select: none;
 }
 #img0.pixelart {
 	height: round(down, 100%, attr(height px));
