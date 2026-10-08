@@ -32,10 +32,9 @@ h2 {
 }
 hr {
 	border: 0;
-	height: 128px;
-	width: 512px;
-	display: block;
-	background: url("hr.webp");
+	height: 8rem;
+	width: 32em;
+	background: url("hr.webp") center / 100%;
 }
 p {
 	text-align: justify;
