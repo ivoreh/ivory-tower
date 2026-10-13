@@ -17,8 +17,7 @@ body {
 	animation: show .2s ease-out;
 }
 main {
-	/* width: 50vmax; */
-	width: 960px;
+	width: 50vmax;
 	margin: 0 auto;
 	padding: 1rem 0;
 }
@@ -26,10 +25,7 @@ h1 {
 	background: var(--sec);
 	color: var(--pri);
 	font-size: 1.5em;
-	margin: 1rem 0;
-}
-h2 {
-	margin: 1rem 0;
+	text-align: center;
 }
 hr {
 	border: 0;
@@ -39,7 +35,6 @@ hr {
 }
 p {
 	text-align: justify;
-	margin: 1em 0;
 }
 img {
 	min-width: 8em;
@@ -56,10 +51,11 @@ a:focus-visible, a:hover, a[href*="#"]::after {
 	transition: 0s;
 	text-decoration-style: solid;
 	&[href*="#"]::after {
-		/* position: absolute; */
-		/* top: 0; */
 		content:" §";
 	}
+}
+a:focus-visible {
+	outline-offset: 0.25rem;
 }
 pre {
 	font: 1.5vmax monospace;
@@ -68,9 +64,6 @@ pre {
 input {
 	accent-color: var(--accent);
 	cursor: pointer;
-}
-a:focus-visible {
-	outline-offset: 0.25rem;
 }
 figure {
 	margin: 0;
@@ -87,10 +80,12 @@ figcaption {
 	border-radius: .5rem;
 	corner-shape: bevel;
 }
-p, h1, h2 {
-	padding: 0.5rem 0;
+h1, h2 {
+	font-family: Garamond, serif;
+	margin: 1rem 0;
+	padding: 0.5rem;
 }
-.center, .color, .tag, h1, h2 {
+.center, .color, .tag {
 	text-align: center;
 }
 .center, .smol, hr, #img0 {
@@ -102,11 +97,10 @@ p, h1, h2 {
 	transition: 0s;
 }
 h1, h2, hr {
-	font-family: Garamond, serif;
 	mix-blend-mode: difference;
 }
 a, .neon, .nude, img {
-	transition: .25s;
+	transition: .2s;
 }
 
 /* general classes */
@@ -173,7 +167,7 @@ a, .neon, .nude, img {
 	margin: 1em 0;
 	img {
 		outline: 0 double var(--accent);
-		transition: .15s, opacity .5s;
+		transition: .2s;
 		object-fit: cover;
 		width: 100%;
 	}
