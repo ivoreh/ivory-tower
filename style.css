@@ -17,7 +17,8 @@ body {
 	animation: show .2s ease-out;
 }
 main {
-	width: 50vmax;
+	/* width: 50vmax; */
+	width: 960px;
 	margin: 0 auto;
 	padding: 1rem 0;
 }
@@ -49,11 +50,16 @@ a {
 	text-decoration-style: dashed;
 	outline: #0000 double;
 }
-a:focus-visible, a:hover {
+a:focus-visible, a:hover, a[href*="#"]::after {
 	color: #000;
 	background: var(--accent);
 	transition: 0s;
 	text-decoration-style: solid;
+	&[href*="#"]::after {
+		/* position: absolute; */
+		/* top: 0; */
+		content:" §";
+	}
 }
 pre {
 	font: 1.5vmax monospace;
