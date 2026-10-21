@@ -42,15 +42,16 @@ img {
 }
 a {
 	color: var(--accent);
-	text-decoration-style: dashed;
 	outline: #0000 double;
 }
-a:focus-visible, a:hover, a[href*="#"]::after {
+a[href^="http"] {
+	text-decoration-style: dashed;
+}
+a:focus-visible, a:hover, a[href^="#"]::after {
 	color: #000;
 	background: var(--accent);
 	transition: 0s;
-	text-decoration-style: solid;
-	&[href*="#"]::after {
+	&[href^="#"]::after {
 		content:" §";
 	}
 }
