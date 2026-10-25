@@ -11,9 +11,9 @@
 	<link href=/fav.webp rel=icon>
 </head>
 <body>
+	<small><a href=.>Blog</a> > 0-1</small>
+	<h1>The 0-1 range</h1>
 	<main>
-		<small><a href=.>Blog</a> > 0-1</small>
-		<h1>The 0-1 range</h1>
 		<p>&emsp;So... math, right? I think 0 and 1 are some pretty cool numbers.</p>
 		<h2>Multiplication!</h2>
 		<p>&emsp;For me, most of the use of the [0, 1] range comes from multiplying numbers within it. 0 and 1 are already great since you can either leave a value alone or completely nullify it, but multiplying with stuff like 0.382? That's when things get interesting-er.<br><br>&emsp;In the context of shaders, you can make masks this way- the color of a given pixel is represented by 3 channels: R, G and B. Each is a value between 0 and 1. Say you multiply a random image with a completely gray one. Gray is (0.5, 0.5, 0.5), which means you halve each color channel's value and effectively darken all pixels in the original image.<br>&emsp;This is actually a "blend mode" in photo editing software literally called "multiply", by the way! There's many blend modes, some being more complex, but this is one that either changes nothing or darkens the image.</p>
