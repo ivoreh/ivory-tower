@@ -8,8 +8,8 @@ for (var i = 0; i < imgs.length; i++) {
 	img.id = i;
 	img.onclick = function () {
 		img0.src = img.src;
-		img0.height = img.height;
-		img0.width = img.width;
+		img0.height = img.naturalHeight;
+		img0.width = img.naturalWidth;
 		modal.style.animation = "";
 		modal.style.display = "flex";
 		location.replace("#" + img.id);

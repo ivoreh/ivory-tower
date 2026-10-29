@@ -13,7 +13,7 @@ body {
 	background: #000;
 	color: var(--pri);
 	font-family: Tahoma, sans-serif;
-	width: 50vmax;
+	width: 50vw;
 	margin: 0 auto;
 	animation: show .2s ease-out;
 }
@@ -89,7 +89,7 @@ h1, h2 {
 	margin-left: auto;
 	margin-right: auto;
 }
-.nude:focus-visible, a:focus-visible {
+.nude:focus-visible, a:focus-visible, .neon:hover {
 	outline: var(--accent) solid 0.25rem;
 	transition: 0s;
 }
@@ -114,9 +114,6 @@ a, .neon, .nude, img {
 	writing-mode: vertical-rl;
 	padding: 0.5rem 0;
 	border-radius: 1rem;
-	&:hover {
-		transition: 0s;
-	}
 }
 .smol {
 	width: clamp(35ch, 95%, 70ch);
@@ -185,6 +182,7 @@ a, .neon, .nude, img {
 	position: fixed;
 	background: #000d;
 	animation: show 0.5s;
+	inset: 0;
 }
 #img0 {
 	animation: zoom 0.5s;
@@ -249,7 +247,7 @@ a, .neon, .nude, img {
 /* mobile support */
 @media(orientation:portrait) {
 	.showcase {grid-template-columns: 1fr}
-	main, #img0 {width: 100%; height: auto}
-	#img0 {margin: auto 0}
+	body, #img0 {width: 100%; height: auto}
+	#img0 {margin: auto; &.pixelart {width: round(down, 100%, attr(height px)); height:auto}}
 	pre {font-size: 3vmin}
 }
