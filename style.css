@@ -25,8 +25,9 @@ h1 {
 }
 hr {
 	border: 0;
-	height: 8rem;
 	width: 32em;
+	max-width: 100%;
+	aspect-ratio: 4;
 	background: url("hr.webp") center / 100%;
 }
 p {
