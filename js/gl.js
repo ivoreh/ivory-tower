@@ -39,56 +39,86 @@ void main() {
 	var positionLocation = gl.getAttribLocation(program, "a_position");
 	var texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
 	var matrixLocation = gl.getUniformLocation(program, "u_matrix");
-	
-	const response = await fetch("ass/muma.obj");
-	const text = await response.text();
 
-	var lines = text.split('\n');
+	const response = await fetch("ass/muma.bin");
+	const buffer = await response.arrayBuffer();
 
-	let vert_count = 0, tri_count = 0;
-	for (let i = 0; i < lines.length; i++) {
-		var rows = lines[i].split(' ');
-		if (rows[0] == "v") {
-			vert_count++;
-		} else if (rows[0] == "f") {
-			tri_count++;
+	const view = new DataView(buffer);
+
+	let byte = 0;
+	function getChar8() {
+		let str = '';
+		if (byte < view.byteLength - 4) {
+			for (let i = byte; i < byte + 4; i++) {
+				str += String.fromCharCode(view.getUint8(i));
+			}
+			byte += 4;
+		} else {
+			return false;
+		}
+		return str;
+	}
+
+	let c, total_vert_bytes = 0, total_uv_bytes = 0, total_tri_bytes = 0;
+	while (c = getChar8()) {
+		if (c == "v   ") {
+			let length = view.getInt32(byte, true);
+			total_vert_bytes += length;
+			byte += 4 + length;
+		} else if (c == "vt  ") {
+			let length = view.getInt32(byte, true);
+			total_uv_bytes += length;
+			byte += 4 + length;
+		} else if (c == "f   ") {
+			let length = view.getInt32(byte, true);
+			total_tri_bytes += length;
+			byte += 4 + length;
 		}
 	}
-	var vertices = new Float32Array(vert_count * 3),
-	uvs = new Float32Array(vert_count * 2),
-	positions = new Float32Array(tri_count * 9),
-	texcoords = new Float32Array(tri_count * 6);
 
-	let v = 0, u = 0, p = 0, t = 0;
-	for (let i = 0; i < lines.length; i++) {
-		var rows = lines[i].split(' ');
-		switch (rows[0]) {
-			case "v":
-				for (let j = 1; j <= 3; j++) {
-					vertices[v] = rows[j];
+	let vertex_sets = new Float32Array(total_vert_bytes / 4);
+	let uv_sets = new Float32Array(total_uv_bytes / 4);
+	let positions = new Float32Array(total_tri_bytes / 4 * 3);
+	let texcoords = new Float32Array(positions.length);
+	let v = 0, p = 0, u = 0, t = 0;
+
+	byte = 0;
+	while (c = getChar8()) {
+		let length;
+		switch (c) {
+			case "v   ":
+				length = view.getInt32(byte, true);
+				byte += 4;
+				for (let i = 0; i < length / 4; i++) {
+					vertex_sets[v] = view.getFloat32(byte, true);
 					v++;
+					byte += 4;
 				}
 				break;
-			case "vt":
-				for (let j = 1; j <= 2; j++) {
-					uvs[u] = rows[j];
+			case "vt  ":
+				length = view.getInt32(byte, true);
+				byte += 4;
+				for (let i = 0; i < length / 4; i++) {
+					uv_sets[u] = view.getFloat32(byte, true);
 					u++;
+					byte += 4;
 				}
 				break;
-			case "f":
-				for (let j = 1; j <= 3; j++) {
-					let pair = rows[j].split('/');
-					for (let k = 0; k <= 2; k++) {
-						positions[p] = vertices[(pair[0] - 1) * 3 + k];
+			case "f   ":
+				length = view.getInt32(byte, true);
+				byte += 4;
+				for (let i = 0; i < length / 4; i++) {
+					for (let j = 0; j < 3; j++) {
+						positions[p] = vertex_sets[(view.getInt16(byte, true) - 1) * 3 + j];
 						p++;
 					}
-					texcoords[t] = uvs[(pair[1] - 1) * 2];
-					texcoords[t + 1] = 1 - uvs[(pair[1] - 1) * 2 + 1];
-					t += 2;
+					byte+=2;
+					texcoords[t] = uv_sets[(view.getInt16(byte, true) - 1)*2];
+					texcoords[t+1] = 1-uv_sets[(view.getInt16(byte, true) - 1)*2+1];
+					t+=2;
+					byte+=2;
 				}
 				break;
-			// default:
-				// console.log(`didn't handle case "${rows[0]}"`);
 		}
 	}
 
@@ -166,7 +196,7 @@ void main() {
 		matrix = m4.zRotate(matrix, 0);
 
 		gl.uniformMatrix4fv(matrixLocation, false, matrix);
-		gl.drawArrays(gl.TRIANGLES, 0, tri_count * 3);
+		gl.drawArrays(gl.TRIANGLES, 0, total_tri_bytes/4);
 		requestAnimationFrame(draw);
 	}
 }
