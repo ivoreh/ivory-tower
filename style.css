@@ -1,9 +1,9 @@
 /* general styling */
 :root {
-	--accent: #c24;
+	--accent: #d35;
 	--pri: #688;
 	--sec: #002b3ace;
-	--ter: #0c354262;
+	/* --ter: #0c354262; */
 	scrollbar-color: var(--accent) #0000;
 	scroll-behavior: smooth;
 	scrollbar-width: thin;
