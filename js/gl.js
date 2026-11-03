@@ -9,36 +9,31 @@ async function main() {
 	if (!gl) {
 		return;
 	}
-	var vertexShader = createShader(gl, gl.VERTEX_SHADER, `
-attribute vec4 a_position;
+	var vertexShader = createShader(gl, gl.VERTEX_SHADER, `attribute vec4 position;
 attribute vec2 a_texcoord;
-
-uniform mat4 u_matrix;
-
-varying vec2 v_texcoord;
-
+// attribute vec3 a_normal;
+uniform mat4 matrix;
+varying vec2 texcoord;
+// varying vec3 normal;
 void main() {
-	gl_Position = u_matrix * a_position;
-
-	v_texcoord = a_texcoord;
-}
-	`);
-	var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, `
-precision highp float;
-
-varying vec2 v_texcoord;
-
-uniform sampler2D u_texture;
-
+	gl_Position = matrix * position;
+	texcoord = a_texcoord;
+	// normal = a_normal;
+}`);
+	var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, `precision highp float;
+varying vec2 texcoord;
+uniform sampler2D texture;
+// varying vec3 normal;
 void main() {
-	gl_FragColor = texture2D(u_texture, v_texcoord);
-}
-	`);
+	gl_FragColor = texture2D(texture, texcoord);
+	gl_FragColor.rgb = floor(gl_FragColor.rgb * (32.0 - 1.0) + 0.5) / (32.0 - 1.0);
+}`);
 	var program = createProgram(gl, vertexShader, fragmentShader);
 
-	var positionLocation = gl.getAttribLocation(program, "a_position");
+	var positionLocation = gl.getAttribLocation(program, "position");
 	var texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
-	var matrixLocation = gl.getUniformLocation(program, "u_matrix");
+	// var normalLocation = gl.getAttribLocation(program, "a_normal");
+	var matrixLocation = gl.getUniformLocation(program, "matrix");
 
 	const response = await fetch("ass/muma.bin");
 	const buffer = await response.arrayBuffer();
@@ -59,28 +54,27 @@ void main() {
 		return str;
 	}
 
-	let c, total_vert_bytes = 0, total_uv_bytes = 0, total_tri_bytes = 0;
+	let c, total_vert_bytes = 0, total_uv_bytes = 0, total_tri_bytes = 0, total_normal_bytes = 0;
 	while (c = getChar8()) {
-		if (c == "v   ") {
-			let length = view.getInt32(byte, true);
+		let length = view.getInt32(byte, true);
+		byte += 4 + length;
+		if (c == "v   ")
 			total_vert_bytes += length;
-			byte += 4 + length;
-		} else if (c == "vt  ") {
-			let length = view.getInt32(byte, true);
+		else if (c == "vt  ")
 			total_uv_bytes += length;
-			byte += 4 + length;
-		} else if (c == "f   ") {
-			let length = view.getInt32(byte, true);
+		else if (c == "f   ")
 			total_tri_bytes += length;
-			byte += 4 + length;
-		}
+		/*else if (c == "vn  ")
+			total_normal_bytes += length;*/
 	}
 
 	let vertex_sets = new Float32Array(total_vert_bytes / 4);
 	let uv_sets = new Float32Array(total_uv_bytes / 4);
+	let normal_sets = new Float32Array(total_normal_bytes / 4);
 	let positions = new Float32Array(total_tri_bytes / 4 * 3);
 	let texcoords = new Float32Array(positions.length);
-	let v = 0, p = 0, u = 0, t = 0;
+	// let normals = new Float32Array(positions.length);
+	let v = 0, p = 0, u = 0, t = 0, n = 0, ns = 0;
 
 	byte = 0;
 	while (c = getChar8()) {
@@ -104,10 +98,19 @@ void main() {
 					byte += 4;
 				}
 				break;
-			case "f   ":
+			/*case "vn  ":
 				length = view.getInt32(byte, true);
 				byte += 4;
 				for (let i = 0; i < length / 4; i++) {
+					normal_sets[ns] = view.getFloat32(byte, true);
+					ns++;
+					byte += 4;
+				}
+				break;*/
+			case "f   ":
+				length = view.getInt32(byte, true);
+				byte += 4;
+				for (let i = 0; i < length / (2 * 2); i++) {
 					for (let j = 0; j < 3; j++) {
 						positions[p] = vertex_sets[(view.getInt16(byte, true) - 1) * 3 + j];
 						p++;
@@ -117,6 +120,11 @@ void main() {
 					texcoords[t+1] = 1-uv_sets[(view.getInt16(byte, true) - 1)*2+1];
 					t+=2;
 					byte+=2;
+					/*for (let j = 0; j < 3; j++) {
+						normals[n] = normal_sets[(view.getInt16(byte, true) - 1) * 3 + j];
+						n++;
+					}
+					byte+=2;*/
 				}
 				break;
 		}
@@ -129,6 +137,10 @@ void main() {
 	var texcoordBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, texcoords, gl.STATIC_DRAW);
+
+	/*var normalBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, normals, gl.STATIC_DRAW);*/
 
 	var texture = gl.createTexture();
 	gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -181,6 +193,10 @@ void main() {
 		gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
 		gl.vertexAttribPointer(texcoordLocation, 2, gl.FLOAT, false, 0, 0);
 
+		/*gl.enableVertexAttribArray(normalLocation);
+		gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+		gl.vertexAttribPointer(normalLocation, 3, gl.FLOAT, false, 0, 0);*/
+
 		var matrix = m4.perspective(
 			Math.PI / 2, // fov
 			gl.canvas.clientWidth / gl.canvas.clientHeight,
@@ -196,7 +212,7 @@ void main() {
 		matrix = m4.zRotate(matrix, 0);
 
 		gl.uniformMatrix4fv(matrixLocation, false, matrix);
-		gl.drawArrays(gl.TRIANGLES, 0, total_tri_bytes/4);
+		gl.drawArrays(gl.TRIANGLES, 0, total_tri_bytes / 4);
 		requestAnimationFrame(draw);
 	}
 }
