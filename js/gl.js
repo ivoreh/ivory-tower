@@ -1,14 +1,18 @@
 "use strict";
 async function main() {
 	var canvas = document.createElement("canvas");
-	canvas.width = window.innerWidth / 2;
-	canvas.height = window.innerHeight / 2;
-	document.documentElement.appendChild(canvas);
-	canvas.style.cssText = "z-index:-1;position:fixed;top:0;width:100%";
 	var gl = canvas.getContext("webgl", { antialias: false });
 	if (!gl) {
 		return;
 	}
+	document.documentElement.appendChild(canvas);
+	canvas.style.cssText = "z-index:-1;position:fixed;inset:0;width:100%;height:100%";
+	canvas.width = window.innerWidth / 2;
+	canvas.height = window.innerHeight / 2;
+	window.addEventListener("resize", (e) => {
+		canvas.width = window.innerWidth / 2;
+		canvas.height = window.innerHeight / 2;
+	});
 	var vertexShader = createShader(gl, gl.VERTEX_SHADER, `attribute vec4 position;
 attribute vec2 a_texcoord;
 // attribute vec3 a_normal;
@@ -29,11 +33,6 @@ void main() {
 	gl_FragColor.rgb = floor(gl_FragColor.rgb * (32.0 - 1.0) + 0.5) / (32.0 - 1.0);
 }`);
 	var program = createProgram(gl, vertexShader, fragmentShader);
-
-	var positionLocation = gl.getAttribLocation(program, "position");
-	var texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
-	// var normalLocation = gl.getAttribLocation(program, "a_normal");
-	var matrixLocation = gl.getUniformLocation(program, "matrix");
 
 	const response = await fetch("ass/muma.bin");
 	const buffer = await response.arrayBuffer();
@@ -64,83 +63,78 @@ void main() {
 			total_uv_bytes += length;
 		else if (c == "f   ")
 			total_tri_bytes += length;
-		/*else if (c == "vn  ")
-			total_normal_bytes += length;*/
+		else if (c == "vn  ")
+			total_normal_bytes += length;
 	}
 
 	let vertex_sets = new Float32Array(total_vert_bytes / 4);
-	let uv_sets = new Float32Array(total_uv_bytes / 4);
-	let normal_sets = new Float32Array(total_normal_bytes / 4);
 	let positions = new Float32Array(total_tri_bytes / 4 * 3);
+	let uv_sets = new Float32Array(total_uv_bytes / 4);
 	let texcoords = new Float32Array(positions.length);
-	// let normals = new Float32Array(positions.length);
+	let normal_sets = new Float32Array(total_normal_bytes / 4);
+	let normals = new Float32Array(positions.length);
 	let v = 0, p = 0, u = 0, t = 0, n = 0, ns = 0;
 
 	byte = 0;
 	while (c = getChar8()) {
-		let length;
+		let length = view.getInt32(byte, true);
+		byte += 4;
 		switch (c) {
-			case "v   ":
-				length = view.getInt32(byte, true);
-				byte += 4;
+			default:
 				for (let i = 0; i < length / 4; i++) {
-					vertex_sets[v] = view.getFloat32(byte, true);
-					v++;
+					let data = view.getFloat32(byte, true);
+					switch (c) {
+						case "v   ":
+							vertex_sets[v++] = data;
+							break;
+						case "vt  ":
+							uv_sets[u++] = data;
+							break;
+						case "vn  ":
+							normal_sets[ns++] = data;
+					}
 					byte += 4;
 				}
 				break;
-			case "vt  ":
-				length = view.getInt32(byte, true);
-				byte += 4;
-				for (let i = 0; i < length / 4; i++) {
-					uv_sets[u] = view.getFloat32(byte, true);
-					u++;
-					byte += 4;
-				}
-				break;
-			/*case "vn  ":
-				length = view.getInt32(byte, true);
-				byte += 4;
-				for (let i = 0; i < length / 4; i++) {
-					normal_sets[ns] = view.getFloat32(byte, true);
-					ns++;
-					byte += 4;
-				}
-				break;*/
 			case "f   ":
-				length = view.getInt32(byte, true);
-				byte += 4;
 				for (let i = 0; i < length / (2 * 2); i++) {
 					for (let j = 0; j < 3; j++) {
-						positions[p] = vertex_sets[(view.getInt16(byte, true) - 1) * 3 + j];
-						p++;
+						positions[p++] = vertex_sets[(view.getInt16(byte, true) - 1) * 3 + j];
 					}
 					byte+=2;
-					texcoords[t] = uv_sets[(view.getInt16(byte, true) - 1)*2];
-					texcoords[t+1] = 1-uv_sets[(view.getInt16(byte, true) - 1)*2+1];
-					t+=2;
+					texcoords[t++] = uv_sets[(view.getInt16(byte, true) - 1)*2];
+					texcoords[t++] = 1-uv_sets[(view.getInt16(byte, true) - 1)*2+1];
 					byte+=2;
 					/*for (let j = 0; j < 3; j++) {
-						normals[n] = normal_sets[(view.getInt16(byte, true) - 1) * 3 + j];
-						n++;
+						normals[n++] = normal_sets[(view.getInt16(byte, true) - 1) * 3 + j];
 					}
 					byte+=2;*/
 				}
-				break;
 		}
 	}
 
+	var matrixLocation = gl.getUniformLocation(program, "matrix");
+	
 	var positionBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
-
+	var positionLocation = gl.getAttribLocation(program, "position");
+	gl.enableVertexAttribArray(positionLocation);
+	gl.vertexAttribPointer(positionLocation, 3, gl.FLOAT, false, 0, 0);
+	
 	var texcoordBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, texcoords, gl.STATIC_DRAW);
-
-	/*var normalBuffer = gl.createBuffer();
+	var texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
+	gl.enableVertexAttribArray(texcoordLocation);
+	gl.vertexAttribPointer(texcoordLocation, 2, gl.FLOAT, false, 0, 0);
+	
+	var normalBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
-	gl.bufferData(gl.ARRAY_BUFFER, normals, gl.STATIC_DRAW);*/
+	gl.bufferData(gl.ARRAY_BUFFER, normals, gl.STATIC_DRAW);
+	var normalLocation = gl.getAttribLocation(program, "a_normal");
+	gl.enableVertexAttribArray(normalLocation);
+	gl.vertexAttribPointer(normalLocation, 3, gl.FLOAT, true, 0, 0);
 
 	var texture = gl.createTexture();
 	gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -163,54 +157,26 @@ void main() {
 	gl.enable(gl.CULL_FACE);
 
 	var then = 0;
-
 	let scroll = getScroll();
 	let lastScroll = scroll;
 
 	requestAnimationFrame(draw);
-	
+
 	function draw(now) {
 		now /= 1000;
 		var delta = now - then;
 		then = now;
+		scroll = lerp(lastScroll, getScroll(), 0.5 * delta);
+		lastScroll = scroll;
+
+		var matrix = m4.perspective(Math.PI / 2, gl.canvas.clientWidth / gl.canvas.clientHeight, 0.1, 1000);
+		matrix = m4.translate(matrix, 0, -scroll * 0.9 - 0.2, scroll * 1.2 - 2.5);
+		matrix = m4.xRotate(matrix, Math.PI / 16 * scroll + 0.1);
+		matrix = m4.yRotate(matrix, Date.now() / 32000);
 
 		gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		gl.useProgram(program);
-
-		gl.enableVertexAttribArray(positionLocation);
-		gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-		gl.vertexAttribPointer(
-			positionLocation,
-			3,        // size = 3d
-			gl.FLOAT, // expect floats
-			false,    // don't normalize
-			0,        // move size * sizeof gl.FLOAT to the next position
-			0         // beginning of buffer
-		);
-
-		gl.enableVertexAttribArray(texcoordLocation);
-		gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
-		gl.vertexAttribPointer(texcoordLocation, 2, gl.FLOAT, false, 0, 0);
-
-		/*gl.enableVertexAttribArray(normalLocation);
-		gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
-		gl.vertexAttribPointer(normalLocation, 3, gl.FLOAT, false, 0, 0);*/
-
-		var matrix = m4.perspective(
-			Math.PI / 2, // fov
-			gl.canvas.clientWidth / gl.canvas.clientHeight,
-			0.1,   // near
-			1000 // far
-		);
-		scroll = lerp(lastScroll, getScroll(), 0.5 * delta);
-		lastScroll = scroll;
-
-		matrix = m4.translate(matrix, 0, -scroll * 0.9 - 0.5, scroll * 1.2 - 2);
-		matrix = m4.xRotate(matrix, Math.PI / 16 * scroll);
-		matrix = m4.yRotate(matrix, Date.now() / 32000);
-		matrix = m4.zRotate(matrix, 0);
-
 		gl.uniformMatrix4fv(matrixLocation, false, matrix);
 		gl.drawArrays(gl.TRIANGLES, 0, total_tri_bytes / 4);
 		requestAnimationFrame(draw);
@@ -371,7 +337,7 @@ var m4 = {
 		];
   	},
 	perspective: function(fieldOfViewInRadians, aspect, near, far) {
-		var f = Math.tan(Math.PI * 0.5 - 0.5 * fieldOfViewInRadians);
+		var f = Math.tan((Math.PI - fieldOfViewInRadians) / 2);
 		var rangeInv = 1.0 / (near - far);
 		return [
 			f / aspect, 0, 0, 0,
