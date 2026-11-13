@@ -19,7 +19,6 @@ body {
 }
 h1 {
 	background: var(--sec);
-	color: var(--pri);
 	font-size: 1.5em;
 	text-align: center;
 }
@@ -35,16 +34,14 @@ p {
 }
 img {
 	min-width: 8em;
+	max-width: 100%;
 	height: auto;
 }
 a {
 	color: var(--accent);
 	outline: #0000 double;
 }
-a[href^="http"] {
-	text-decoration-style: dashed;
-}
-a:focus-visible, a:hover, a[href^="#"]::after {
+a:focus-visible, a:hover {
 	color: #000;
 	background: var(--accent);
 	transition: 0s;
@@ -52,8 +49,8 @@ a:focus-visible, a:hover, a[href^="#"]::after {
 		content:" §";
 	}
 }
-a:focus-visible {
-	outline-offset: 0.25rem;
+a[href^="http"] {
+	text-decoration-style: dashed;
 }
 pre {
 	font: 1.5vmax monospace;
@@ -97,7 +94,7 @@ h1, h2 {
 h1, h2, hr {
 	mix-blend-mode: difference;
 }
-a, .neon, .nude, img {
+a, .neon, .nude {
 	transition: .2s;
 }
 
@@ -130,7 +127,7 @@ a, .neon, .nude, img {
 		display: block;
 		white-space: pre;
 		font-family: monospace;
-		content: " !!!!! \a[Hover]\a\a detailed nude / \avisible vulva";
+		content: " !!!!!\a[Hover]\a\a detailed nude / \avisible vulva" / "";
 		pointer-events: none;
 	}
 	&:hover, #censor:checked + .showcase & {
@@ -163,7 +160,6 @@ a, .neon, .nude, img {
 	img {
 		outline: 0 double var(--accent);
 		transition: .2s;
-		object-fit: cover;
 		width: 100%;
 	}
 	img:focus, img:hover {
@@ -178,8 +174,6 @@ a, .neon, .nude, img {
 #modal {
 	display: none;
 	z-index: 1;
-	height: 100%;
-	width: 100%;
 	position: fixed;
 	background: #000d;
 	animation: show 0.5s;
