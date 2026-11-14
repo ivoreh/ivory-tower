@@ -1,6 +1,10 @@
-let modal = document.getElementById("modal");
-let img0 = document.getElementById("img0");
 let imgs = document.querySelectorAll(".showcase img");
+let modal = document.createElement("div");
+let img0 = document.createElement("img");
+modal.id = "modal";
+img0.id = "img0";
+document.body.appendChild(modal);
+modal.appendChild(img0);
 
 for (var i = 0; i < imgs.length; i++) {
 	let img = imgs[i];
@@ -18,14 +22,14 @@ for (var i = 0; i < imgs.length; i++) {
 	if ("#" + img.id == window.location.hash) {
 		img.click();
 	}
-	img.addEventListener("keydown", k => {
-		if (k.key == "Enter") {
+	img.addEventListener("keydown", e => {
+		if (e.key == "Enter") {
 			img.click();
 		}
 	});
 }
 
-window.addEventListener('hashchange', evt => {
+window.addEventListener('hashchange', e => {
 	let hash = window.location.hash;
 	if (hash) {
 		let query = document.querySelector(hash);
@@ -37,20 +41,20 @@ window.addEventListener('hashchange', evt => {
 	}
 });
 
-modal.onclick = evt => {
-	if (!evt.target.closest("#img0bg")) {
+modal.onclick = e => {
+	if (!e.target.closest("#img0bg")) {
 		hide();
 	}
 };
 
-window.addEventListener("keydown", evt => {
-	if (evt.key == "Escape") {
+window.addEventListener("keydown", e => {
+	if (e.key == "Escape") {
 		hide();
 	}
 });
 
-modal.addEventListener("animationend", evt => {
-	if (evt.animationName == "hide") {
+modal.addEventListener("animationend", e => {
+	if (e.animationName == "hide") {
 		modal.style.display = "none";
 	}
 });
