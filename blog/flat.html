@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+	<meta charset=UTF-8>
+	<meta name=viewport content="width=device-width,initial-scale=1">
+	<meta property=og:image content=/blog/flat/5.webp>
+	<meta property=og:title content="1:1 colors in blender">
+	<meta property=og:description content="Defaults in blender you'd probably want to know about if you render retro models">
+	<title>1:1 colors in blender</title>
+	<link href=/style.css rel=stylesheet>
+	<link href=/fav.webp rel=icon>
+</head>
+<body>
+	<small><a href=.>Blog</a> > 1:1 colors in blender, 15 Nov 2026</small>
+	<h1>1:1 colors in blender</h1>
+	<main>
+		<p>here's a guide on how to make limited palette / flat color / low poly renders with blender that output the exact colors in your textures</p>
+		<p>blender's defaults are aimed at more realistic styles so it has a bunch of modern utilities turned on</p>
+		<h2>Resolution</h2>
+		<p>first, set your render resolution to some lower value</p>
+		<img src=./flat/1.webp width=400 height=200>
+		<h2>Samples</h2>
+		<p>set samples to 0 (there's no reason to sample a lot if you're going for an aliased look) and turn off temporal reprojection</p>
+		<img src=./flat/2.webp width=350 height=350>
+		<h2>Filter size</h2>
+		<p>set filter size to 0 (though setting samples to 0 should still get rid of antialiasing)</p>
+		<img src=./flat/3.webp width=300 height=160>
+		<h2>Dither</h2>
+		<p>turn off dither. i had issues with this one before because if you work with flat color models the dither only gets applied after you save the render. this in turn introduces noise in what you thought would be a render with a very limited color palette</p>
+		<img src=./flat/4.webp width=300 height=110>
+		<h2>Tonemapper</h2>
+		<p>switch view to Standard. this basically turns off the tonemapper (aka the thing that prevents blown out colors and makes realistic renders look better but skews your colors ever so slightly)</p>
+		<img src=./flat/5.webp width=300 height=200>
+		<p>I recommend using <code>File &gt; Defaults &gt; Save Startup File</code> to set this as your default file if you make low poly / retro things often</p>
+		<hr>
+		<figure class="center pixelart flex">
+			<figure>
+				<img src=./flat/ex.webp width=384 height=512>
+				<figcaption>6.022 bytes</figcaption>
+			</figure>
+			<figure>
+				<img src=./flat/ex2.webp width=384 height=512>
+				<figcaption>47.180 bytes</figcaption>
+			</figure>
+		</figure>
+		<p>here are 2 renders of the same model: one with the settings mentioned above and one with antialiasing, tonemapping and dither (set to 2 to make it more noticeable)</p>
+		<figure>
+			<img src=./flat/ex2-detail.webp width=256 height=256 class=pixelart>
+			<figcaption>exaggerated contrast to show noise</figcaption>
+		</figure>
+	</main>
+</body>
+</html>
