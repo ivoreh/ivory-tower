@@ -14,8 +14,17 @@ body {
 	color: var(--pri);
 	font-family: Tahoma, sans-serif;
 	width: 50vw;
-	margin: 0 auto;
+	margin: 0 auto 8em;
 	animation: show .2s ease-out;
+}
+html::after {
+	content: "";
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 8em;
+	background: linear-gradient(#0000, #000e);
+	pointer-events: none;
 }
 h1 {
 	background: var(--sec);
@@ -80,10 +89,7 @@ h1, h2 {
 	margin: 1rem 0;
 	padding: 0.5rem;
 }
-.center, .color, .tag {
-	text-align: center;
-}
-.center, .smol, hr, #img0 {
+.center, hr, #img0 {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -94,13 +100,21 @@ h1, h2 {
 h1, h2, hr {
 	mix-blend-mode: difference;
 }
-a, .neon, .nude {
+a, .neon, .nude	 {
 	transition: .2s;
 }
 
 /* general classes */
 .center {
 	display: block;
+	text-align: center;
+}
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	justify-content: space-around;
+	align-items: flex-start;
 }
 .neon {
 	color: var(--pri);
@@ -112,9 +126,6 @@ a, .neon, .nude {
 	writing-mode: vertical-rl;
 	padding: 0.5rem 0;
 	border-radius: 1rem;
-}
-.smol {
-	width: clamp(35ch, 95%, 70ch);
 }
 .nude {
 	background: var(--sec);
@@ -142,13 +153,6 @@ a, .neon, .nude {
 			opacity: 0;
 		}
 	}
-}
-.flex {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5em;
-	justify-content: space-around;
-	align-items: flex-start;
 }
 
 /* portfolio stuff */
@@ -200,43 +204,6 @@ a, .neon, .nude {
 @keyframes hide {
 	0% {opacity: 1}
 	to {opacity: 0}
-}
-
-/* tools stuff */
-.palette {
-	display: flex;
-	overflow: hidden;
-	flex-wrap: wrap;
-}
-.color {
-	width: 4em;
-	height: 4em;
-	flex: 1 0 auto;
-	border: 0 solid;
-	box-sizing: border-box;
-	transition: 0.1s;
-	background: var(--sec);
-	cursor: pointer;
-	outline: 0;
-	&:focus, &:hover {
-		border-width: 0.25em 0;
-	}
-	&:active {
-		border-width: 0.5em 0;
-	}
-}
-.tag img {
-	display: block;
-	height: 1em;
-	width: 100%;
-	outline: 0 double var(--accent);
-	&:hover {
-		transition: 0s;
-		outline: 0.5rem solid var(--accent);
-	}
-	&:active {
-		outline-offset: 0.5rem;
-	}
 }
 
 /* mobile support */

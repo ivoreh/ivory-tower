@@ -12,6 +12,47 @@
 	<link href=style.css rel=stylesheet>
 	<link href=fav.webp rel=icon>
 	<script defer src=js/palettes.js></script>
+	<style>
+.palette {
+	display: flex;
+	overflow: hidden;
+	flex-wrap: wrap;
+	border-radius: .5rem;
+}
+.color {
+	width: 4em;
+	height: 4em;
+	flex: 1 0 auto;
+	border: 0 solid;
+	box-sizing: border-box;
+	transition: 0.1s;
+	background: var(--sec);
+	cursor: pointer;
+	outline: 0;
+	&:focus, &:hover {
+		border-width: 0.25em 0;
+	}
+	&:active {
+		border-width: 0.5em 0;
+	}
+}
+.color, .tag {
+	text-align: center;
+}
+.tag img {
+	display: block;
+	height: 1em;
+	width: 100%;
+	outline: 0 double var(--accent);
+	&:hover {
+		transition: 0s;
+		outline: 0.5rem solid var(--accent);
+	}
+	&:active {
+		outline-offset: 0.5rem;
+	}
+}
+	</style>
 </head>
 <body>
 	<small><a href=index.html>Home</a> > Palettes</small>
